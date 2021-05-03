@@ -13,9 +13,9 @@
 	<dt><h2><em> 3. Link del proyecto </em></h2></dt>
 	<br>
 	<dd><b>3.1.</b> Link de Repositorio</dd>
-	<dd>https://github.com/CamilaLozano-UEB/FourPawsCitizens_JEE</dd>
+	<dd>https://github.com/CamilaLozano-UEB/Library_JPA</dd>
 	<dd><b>3.2.</b> Link del video en Youtube</dd>
-	<dd> https://youtu.be/eK7bjal5W5c </dd>
+	<dd>  </dd>
 	<br>
 	<dt><h2><em> 4. Lenguaje de Codificación </em></h2></dt>
 	<br>
