@@ -1,6 +1,6 @@
 package edu.unbosque.jpa.repositories;
 
-import edu.unbosque.JPATutorial.jpa.entities.Library;
+import edu.unbosque.jpa.entities.Library;
 
 import java.util.List;
 import java.util.Optional;

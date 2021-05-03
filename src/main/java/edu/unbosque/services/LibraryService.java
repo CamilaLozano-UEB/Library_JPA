@@ -1,9 +1,11 @@
 package edu.unbosque.services;
 
-import edu.unbosque.JPATutorial.jpa.entities.Library;
-import edu.unbosque.JPATutorial.jpa.repositories.LibraryRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.LibraryRepositoryImpl;
-import edu.unbosque.JPATutorial.servlets.pojos.LibraryPOJO;
+
+
+import edu.unbosque.jpa.entities.Library;
+import edu.unbosque.jpa.repositories.LibraryRepository;
+import edu.unbosque.jpa.repositories.LibraryRepositoryImpl;
+import edu.unbosque.servlets.pojos.LibraryPOJO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

@@ -1,11 +1,12 @@
 package edu.unbosque.services;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
-import edu.unbosque.JPATutorial.jpa.entities.Book;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepositoryImpl;
-import edu.unbosque.JPATutorial.jpa.repositories.BookRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.BookRepositoryImpl;
+
+import edu.unbosque.jpa.entities.Author;
+import edu.unbosque.jpa.entities.Book;
+import edu.unbosque.jpa.repositories.AuthorRepository;
+import edu.unbosque.jpa.repositories.AuthorRepositoryImpl;
+import edu.unbosque.jpa.repositories.BookRepository;
+import edu.unbosque.jpa.repositories.BookRepositoryImpl;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

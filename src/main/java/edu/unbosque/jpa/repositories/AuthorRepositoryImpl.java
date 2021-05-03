@@ -1,6 +1,6 @@
 package edu.unbosque.jpa.repositories;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
+import edu.unbosque.jpa.entities.Author;
 
 import javax.persistence.EntityManager;
 import java.util.List;
