@@ -17,8 +17,40 @@
 <body>
 
 <h1>Library Manager</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown" >
+                <a class="nav-link dropdown-toggle" id="dropDown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                </a>
+                <div class="dropdown-menu">
+                    <h6 class="dropdown-header">Dropdown header</h6>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+    var dropDown = document.getElementById("dropDown");
+    dropDown.addEventListener("onclick", function () {
+        console.log("asdasdfa")
+        dropDown.className = "nav-item dropdown show";
 
-<button onclick="location.href='./form-library.jsp';">Create library</button>
+        dropDown.firstChild["aria-expanded"] = "true";
+        dropDown.lastChild.className = "dropdown-menu show";
+    })
+
+</script>
+location.href='./form-library.jsp';">Create library</button>
 <button onclick="location.href='./form-author.jsp';">Create author</button>
 
 <h3>Libraries</h3>
