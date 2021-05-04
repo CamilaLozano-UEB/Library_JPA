@@ -1,7 +1,4 @@
-* {
-    margin: 0px;
-    padding: 0px;
-}
+
 
 #header {
     margin: auto;
@@ -14,7 +11,7 @@ ul, ol {
 }
 
 .nav {
-    width: 500px; /*Le establecemos un ancho*/
+    width: 1000px; /*Le establecemos un ancho*/
     margin: 0 auto; /*Centramos automaticamente*/
 }
 
