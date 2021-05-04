@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
     <style>
         table, th, td {
             border: 1px solid black;
@@ -15,6 +15,36 @@
     </style>
 </head>
 <body>
+
+<div id="header">
+    <ul class="nav">
+        <li><a href="">Inicio</a></li>
+        <li><a href="">Servicios</a>
+            <ul>
+                <li><a href="">Submenu1</a></li>
+                <li><a href="">Submenu2</a></li>
+                <li><a href="">Submenu3</a></li>
+                <li><a href="">Submenu4</a>
+                    <ul>
+                        <li><a href="">Submenu1</a></li>
+                        <li><a href="">Submenu2</a></li>
+                        <li><a href="">Submenu3</a></li>
+                        <li><a href="">Submenu4</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="">Acerca de</a>
+            <ul>
+                <li><a href="">Submenu1</a></li>
+                <li><a href="">Submenu2</a></li>
+                <li><a href="">Submenu3</a></li>
+                <li><a href="">Submenu4</a></li>
+            </ul>
+        </li>
+        <li><a href="">Contacto</a></li>
+    </ul>
+</div>
 
 <h1>Library Manager</h1>
 
