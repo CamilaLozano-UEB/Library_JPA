@@ -1,5 +1,4 @@
 package edu.unbosque.jpa.repositories;
-import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Rent;
 
 import java.util.List;
