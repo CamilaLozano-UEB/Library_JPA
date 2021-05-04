@@ -1,51 +1,64 @@
 
-
-#header {
-    margin: auto;
-    width: 500px;
-    font-family: Arial, Helvetica, sans-serif;
+table {
+    border: 1px solid black;
 }
 
-ul, ol {
-    list-style: none;
+menu{
+    width:100%;
+}
+#menu ul li {
+    width:20%;
+    border: 1px solid black;
 }
 
-.nav {
-    width: 1000px; /*Le establecemos un ancho*/
-    margin: 0 auto; /*Centramos automaticamente*/
+
+#menu ul {
+    list-style:none;
+    margin:0;
+    padding:0;
 }
 
-.nav > li {
-    float: left;
+#menu ul a {
+    display:block;
+    color:#000;
+    text-decoration:none;
+    font-weight:400;
+    font-size:15px;
+    padding:10px;
+    font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:1px;
 }
 
-.nav li a {
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 12px;
-    display: block;
+#menu ul li {
+    position:relative;
+    float:left;
+    margin:0;
+    padding:0;
 }
 
-.nav li a:hover {
-    background-color: #434343;
+#menu ul li:hover {
+    background:#5b78a7;
 }
 
-.nav li ul {
-    display: none;
-    position: absolute;
-    min-width: 140px;
+#menu ul ul {
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    padding:0;
 }
 
-.nav li:hover > ul {
-    display: block;
+#menu ul ul li {
+    float:none;
+    width:150px
 }
 
-.nav li ul li {
-    position: relative;
+#menu ul ul a {
+    line-height:120%;
+    padding:10px 15px;
 }
 
-.nav li ul li ul {
-    right: -140px;
-    top: 0px;
+#menu ul li:hover > ul {
+    display:block;
 }

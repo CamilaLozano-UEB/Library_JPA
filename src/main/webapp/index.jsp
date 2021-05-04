@@ -4,48 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>JSP Tutorial</title>
-
+    <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-
-<div id="header">
-    <ul class="nav">
-        <li><a href="">Inicio</a></li>
-        <li><a href="">Servicios</a>
+    <div class=" div">
+        <nav id="menu">
             <ul>
-                <li><a href="">Submenu1</a></li>
-                <li><a href="">Submenu2</a></li>
-                <li><a href="">Submenu3</a></li>
-                <li><a href="">Submenu4</a>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Autor</a>
                     <ul>
-                        <li><a href="">Submenu1</a></li>
-                        <li><a href="">Submenu2</a></li>
-                        <li><a href="">Submenu3</a></li>
-                        <li><a href="">Submenu4</a></li>
+                        <li><a href="#">Crear</a></li>
+                        <li><a href="#">Eliminar</a></li>
+                        <li><a href="#">Modificar</a></li>
                     </ul>
                 </li>
+                <li><a href="#">Editor</a></li>
+                <li><a href="#">Libro</a></li>
+                <li><a href="#">Renta</a></li>
             </ul>
-        </li>
-        <li><a href="">Acerca de</a>
-            <ul>
-                <li><a href="">Submenu1</a></li>
-                <li><a href="">Submenu2</a></li>
-                <li><a href="">Submenu3</a></li>
-                <li><a href="">Submenu4</a></li>
-            </ul>
-        </li>
-        <li><a href="">Contacto</a></li>
-    </ul>
-</div>
-
+        </nav>
+    </div>
+    <br>
+</head>
+<body>
+<br>
 <h1>Library Manager</h1>
 
 <button onclick="location.href='./form-library.jsp';">Create library</button>
@@ -53,7 +35,7 @@
 
 <h3>Libraries</h3>
 
-<table id="librariesTbl">
+<table class="table table-striped" id="librariesTbl">
     <thead>
     <tr>
         <th>Id</th>
@@ -66,7 +48,7 @@
 
 <h3>Authors</h3>
 
-<table id="authorsTbl">
+<table class="table" id="authorsTbl">
     <thead>
     <tr>
         <th>Id</th>
