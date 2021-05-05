@@ -9,11 +9,11 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Costumer.findByEmail",
                 query = "SELECT c FROM Costumer c WHERE c.email = :email"),
-        @NamedQuery(name = "Users.findByFirst_name",
+        @NamedQuery(name = "Costumer.findByFirst_name",
                 query = "SELECT c FROM Costumer c WHERE c.first_name = :first_name"),
-        @NamedQuery(name = "Users.findByLast_name",
+        @NamedQuery(name = "Costumer.findByLast_name",
                 query = "SELECT c FROM Costumer c WHERE c.last_name = :last_name"),
-        @NamedQuery(name = "Users.findAll",
+        @NamedQuery(name = "Costumer.findAll",
                 query = "SELECT c FROM Costumer c")
 })
 public class Costumer {
@@ -100,7 +100,7 @@ public class Costumer {
 
     public void addRent(Rent rent) {
         rents.add(rent);
-        rent.setUser(this);
+        rent.setCustomer(this);
     }
 
 }
