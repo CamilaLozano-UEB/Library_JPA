@@ -7,33 +7,27 @@
     <link rel="stylesheet" href="CSS/Styles.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <div class=" div">
-        <nav id="menu">
-            <ul>
-                <li><a href="form-author.jsp/">Inicio</a></li>
-                <li><a href="#">Autor</a>
-                    <ul>
-                        <li><a href="#">Crear</a></li>
-                        <li><a href="#">Eliminar</a></li>
-                        <li><a href="#">Modificar</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Editor</a></li>
-                <li><a href="#">Libro</a></li>
-                <li><a href="#">Renta</a></li>
-            </ul>
-        </nav>
-    </div>
-    <br>
 </head>
 <body>
 <br>
 <h1>Library Manager</h1>
 
-<button onclick="location.href='./form-library.jsp';">Create library</button>
-<button onclick="location.href='./form-author.jsp';">Create author</button>
+<button class="button" onclick="location.href='./form-library.jsp';">Create library</button>
+<button class="button" onclick="location.href='./form-author.jsp';">Create author</button>
 
-<h3>Libraries</h3>
+<script>
+    const buttons = document.getElementsByClassName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("mouseenter", function () {
+            buttons[i].style = "background-color: #FFFFFF80;"
+        });
+        buttons[i].addEventListener("mouseleave", function () {
+            buttons[i].style = "background-color: transparent;"
+        });
+    }
+</script>
+
+<!--<h3>Libraries</h3>
 
 <table class="table table-striped" id="librariesTbl">
     <thead>
@@ -108,6 +102,6 @@
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country'], actions = ['create-book']);
 
 </script>
-
+-->
 </body>
 </html>
