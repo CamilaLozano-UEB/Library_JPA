@@ -1,12 +1,12 @@
 package edu.unbosque.services;
 
 import edu.unbosque.jpa.repositories.RentRepository;
-import edu.unbosque.jpa.repositories.UserRepository;
+import edu.unbosque.jpa.repositories.CostumerRepository;
 
 import javax.ejb.Stateless;
 
 @Stateless
 public class RentService {
-    UserRepository userRepository;
+    CostumerRepository costumerRepository;
     RentRepository rentRepository;
 }

@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Users") // Optional
+@Table(name = "Costumer") // Optional
 @NamedQueries({
-        @NamedQuery(name = "Users.findByEmail",
-                query = "SELECT u FROM User u WHERE u.email = :email"),
+        @NamedQuery(name = "Costumer.findByEmail",
+                query = "SELECT c FROM Costumer c WHERE c.email = :email"),
         @NamedQuery(name = "Users.findByFirst_name",
-                query = "SELECT u FROM User u WHERE u.first_name = :first_name"),
+                query = "SELECT c FROM Costumer c WHERE c.first_name = :first_name"),
         @NamedQuery(name = "Users.findByLast_name",
-                query = "SELECT u FROM User u WHERE u.last_name = :last_name"),
+                query = "SELECT c FROM Costumer c WHERE c.last_name = :last_name"),
         @NamedQuery(name = "Users.findAll",
-                query = "SELECT u FROM User u")
+                query = "SELECT c FROM Costumer c")
 })
-public class User {
+public class Costumer {
     @Id
     @Column(name = "email")
     private String email;
@@ -33,20 +33,20 @@ public class User {
     @Column(name = "age")
     private String age;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "costumer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rent> rents = new ArrayList<>();
 
-    public User() {
+    public Costumer() {
     }
 
-    public User(String first_name, String last_name, String gender, String age) {
+    public Costumer(String first_name, String last_name, String gender, String age) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
     }
 
-    public User(String email, String first_name, String last_name, String gender, String age) {
+    public Costumer(String email, String first_name, String last_name, String gender, String age) {
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
