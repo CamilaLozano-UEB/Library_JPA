@@ -8,7 +8,9 @@ import java.util.List;
 @Table(name = "Author") // Optional
 @NamedQueries({
         @NamedQuery(name = "Author.findByName",
-                query = "SELECT a FROM Author a WHERE a.name = :name")
+                query = "SELECT a FROM Author a WHERE a.name = :name"),
+        @NamedQuery(name = "Author.modify",
+                query = "UPDATE Author a SET a.name= :name, a.country= :country WHERE a.id = :id")
 })
 public class Author {
 

@@ -1,8 +1,10 @@
 package edu.unbosque.jpa.repositories;
 
 import edu.unbosque.jpa.entities.Author;
+import edu.unbosque.servlets.pojos.AuthorPOJO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaUpdate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +42,16 @@ public class AuthorRepositoryImpl implements AuthorRepository {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void modify(Integer id, String name, String country) {
+        entityManager.getTransaction().begin();
+        Author author = this.findById(id).get();
+        if (author == null) return;
+        author.setName(name);
+        author.setCountry(country);
+        entityManager.getTransaction().commit();
     }
 
 }

@@ -13,4 +13,6 @@ public interface AuthorRepository {
 
     Optional<Author> save(Author author);
 
+    void modify(Integer id, String name, String country);
+
 }

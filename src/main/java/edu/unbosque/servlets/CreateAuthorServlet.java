@@ -12,7 +12,6 @@ import java.io.IOException;
 public class CreateAuthorServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         response.setContentType("text/html");
 
         String name = request.getParameter("name");

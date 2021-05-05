@@ -10,7 +10,7 @@
     <div class=" div">
         <nav id="menu">
             <ul>
-                <li><a href="#">Inicio</a></li>
+                <li><a href="form-author.jsp/">Inicio</a></li>
                 <li><a href="#">Autor</a>
                     <ul>
                         <li><a href="#">Crear</a></li>
