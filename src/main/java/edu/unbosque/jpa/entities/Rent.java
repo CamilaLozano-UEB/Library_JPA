@@ -19,7 +19,7 @@ public class Rent {
     private Integer rentId;
 
     @ManyToOne
-    @JoinColumn(name = "costumer")
+    @JoinColumn(name = "email")
     private Costumer costumer;
 
     @Column(name = "renting_date")
