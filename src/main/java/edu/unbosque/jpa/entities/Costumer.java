@@ -102,4 +102,5 @@ public class Costumer {
         rents.add(rent);
         rent.setUser(this);
     }
+
 }
