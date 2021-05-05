@@ -100,7 +100,7 @@ public class Costumer {
 
     public void addRent(Rent rent) {
         rents.add(rent);
-        rent.setUser(this);
+        rent.setEmail(this);
     }
 
 }
