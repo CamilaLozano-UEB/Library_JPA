@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSP Tutorial</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/Styles.css">
+</head>
+<body>
+
+<div id="btn-group">
+    <button class="button" onclick="location.href='./form-library.jsp';">Libraries</button>
+    <button class="button" onclick="location.href='./form-library.jsp';">Books</button>
+    <button class="button" onclick="location.href='./form-library.jsp';">Customers</button>
+    <button class="button" onclick="location.href='./form-author.jsp';">Authors</button>
+    <button class="button" onclick="location.href='./form-library.jsp';">Editions</button>
+</div>
+
+<script>
+    const buttons = document.getElementsByClassName("button");
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("mouseenter", function () {
+            buttons[i].style.backgroundColor = "#FFFFFF80";
+        });
+        buttons[i].addEventListener("mouseleave", function () {
+            buttons[i].style = "background-color: transparent;";
+        });
+    }
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@ public class CreateLibraryServlet extends HttpServlet {
         LibraryService libraryService = new LibraryService();
         libraryService.saveLibrary(name);
 
-        response.sendRedirect("./index.jsp");
+        response.sendRedirect("./index.html");
     }
 
 }

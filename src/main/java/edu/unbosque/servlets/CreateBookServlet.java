@@ -23,7 +23,7 @@ public class CreateBookServlet extends HttpServlet {
         BookService bookService = new BookService();
         bookService.saveBook(title, isbn, authorId);
 
-        response.sendRedirect("./index.jsp");
+        response.sendRedirect("./index.html");
 
     }
 

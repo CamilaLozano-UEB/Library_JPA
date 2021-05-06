@@ -1,15 +1,24 @@
-
 body {
     background-image: url("https://www.telemadrid.es/2019/07/16/programas/madrid-trabaja/libreria_2140595955_7143659_1300x731.jpg");
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+    height: 100%;
 }
 
-table {
-    border: 1px solid black;
+#btn-group {
+    width: 100%;
+    height: 100%;
 }
 
 .button {
-    font-size: 120px;
+    font-size: 50px;
+    height: 100%;
+    width: 19.7%;
     color: bisque;
     background-color: transparent;
-    border: none;
 }
+
