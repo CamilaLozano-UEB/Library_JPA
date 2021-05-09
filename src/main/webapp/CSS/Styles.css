@@ -17,7 +17,7 @@ body {
 .textItem {
     background-color: #40739e;
     color: white;
-    border-color: transparent;
+    border-color: #273c75;
     border-radius: 5px;
     height: 25px;
     font-family: "Calibri Light";
@@ -38,7 +38,7 @@ h2 {
 .formButton {
     background-color: #40739e;
     color: white;
-    border-color: transparent;
+    border-color: #273c75;
     border-radius: 5px;
     height: 30px;
 }

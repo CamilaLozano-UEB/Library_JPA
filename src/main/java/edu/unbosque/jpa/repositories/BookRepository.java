@@ -10,12 +10,11 @@ public interface BookRepository {
 
     Optional<Book> findById(Integer id);
 
-    Optional<Book> findByTitle(String title);
-
-    Optional<Book> findByNameNamedQuery(String title);
-
     List<Book> findAll();
 
     Optional<Book> save(Book book);
 
+    void modify(Integer bookId, Integer authorId, String title, String isbnNumber, String genre);
+
+    void delete(Integer bookId);
 }

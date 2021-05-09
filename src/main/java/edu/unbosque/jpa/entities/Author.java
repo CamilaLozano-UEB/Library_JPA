@@ -78,5 +78,8 @@ public class Author {
         books.add(book);
         book.setAuthor(this);
     }
+    public void removeBook(Book book){
+        books.remove(book);
+    }
 
 }

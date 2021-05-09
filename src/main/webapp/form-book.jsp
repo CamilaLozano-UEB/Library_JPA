@@ -9,11 +9,13 @@
 <div>
     <h2>Crear Libro</h2>
     <form action="./create-book">
-        Book title: <input type="text" id="title" name="title" required>
+        <input type="text" class="textItem" name="authorId" required>
         <br>
-        Book ISBN: <input type="text" id="isbn" name="isbn" required>
+        Book title: <input type="text" class="textItem" name="title" required>
         <br>
-        Book Genre <input type="text" id="genre" name="genre" required>
+        Book ISBN: <input type="text" class="textItem" name="isbn" required>
+        <br>
+        Book Genre <input type="text" class="textItem" name="genre" required>
         <br>
         <input type="submit" class="formButton" value="Create book!">
     </form>
@@ -23,6 +25,8 @@
     <h2>Modificar Libro</h2>
     <form action="./modify-book">
         Book id: <input type="text" class="textItem" name="bookId" required>
+        <br>
+        Author id: <input type="text" class="textItem" name="authorId" required>
         <br>
         Book title: <input type="text" class="textItem" name="title" required>
         <br>

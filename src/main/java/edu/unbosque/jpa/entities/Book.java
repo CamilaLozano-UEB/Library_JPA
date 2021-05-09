@@ -5,10 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Book") // Optional
 @NamedQueries({
-        @NamedQuery(name = "Book.findByTitle",
-                query = "SELECT b FROM Book b WHERE b.title = :title"),
+        @NamedQuery(name = "Book.findById",
+                query = "SELECT b FROM Book b WHERE b.id = :id"),
         @NamedQuery(name = "Book.findAll",
-                query = "SELECT b FROM Book b")
+                query = "SELECT b FROM Book b"),
+        @NamedQuery(name = "Book.modify",
+                query = "UPDATE Book b SET b.author= :author, b.title= :tittle, b.isbn= :isbn, b.genre= :genre WHERE b.id = :id"),
+        @NamedQuery(name = "Book.delete",
+                query = "DELETE FROM Book b WHERE b.id = :id")
 })
 public class Book {
 
@@ -30,17 +34,22 @@ public class Book {
     @OneToOne(mappedBy = "book")
     private Edition edition;
 
-    public Book() {}
+    @Column(name = "genre")
+    private String genre;
 
-    public Book(String title, String isbn) {
+    public Book() {
+    }
+
+    public Book(String title, String isbn, String genre) {
         this.title = title;
         this.isbn = isbn;
     }
 
-    public Book(Integer bookId, String title, String isbn) {
+    public Book(Integer bookId, String title, String isbn, String genre) {
         this.bookId = bookId;
         this.title = title;
         this.isbn = isbn;
+        this.genre = genre;
     }
 
     public Integer getBookId() {
@@ -75,7 +84,21 @@ public class Book {
         this.author = author;
     }
 
-    public Edition getEdition() { return edition; }
+    public void setEdition(Edition edition) {
+        this.edition = edition;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public Edition getEdition() {
+        return edition;
+    }
 
     public void addEdition(Edition edition) {
         this.edition = edition;
