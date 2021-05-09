@@ -2,17 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JPA Tutorial</title>
+    <title>Book forms</title>
+    <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
-<form action="./create-book">
-    <input type="hidden" id="authorId" name="authorId" value ="<%= request.getParameter("authorId") %>">
-    Book title: <input type="text" id="title" name="title">
-    <br />
-    Book ISBN: <input type="text" id="isbn" name="isbn">
-    <br />
-    <input type="submit" value="Create book!">
-</form>
+<div>
+    <h2>Crear Libro</h2>
+    <form action="./create-book">
+        Book title: <input type="text" id="title" name="title" required>
+        <br>
+        Book ISBN: <input type="text" id="isbn" name="isbn" required>
+        <br>
+        Book Genre <input type="text" id="genre" name="genre" required>
+        <br>
+        <input type="submit" class="formButton" value="Create book!">
+    </form>
+</div>
+
+<div>
+    <h2>Modificar Libro</h2>
+    <form action="./modify-book">
+        Book id: <input type="text" class="textItem" name="bookId" required>
+        <br>
+        Book title: <input type="text" class="textItem" name="title" required>
+        <br>
+        Book ISBN: <input type="text" class="textItem" name="isbn" required>
+        <br>
+        Book Genre <input type="text" class="textItem" name="genre" required>
+        <br>
+        <input type="submit" class="formButton" value="Modify book!">
+    </form>
+</div>
+
+<div>
+    <h2>Eliminar Libro</h2>
+    <form action="./delete-book">
+        Book id: <input type="text" class="textItem" name="bookId" required>
+        <br>
+        <input type="submit" class="formButton" value="Delete book!">
+    </form>
+</div>
 
 </body>
 </html>
