@@ -1,7 +1,6 @@
-package edu.unbosque.servlets;
+package edu.unbosque.servlets.author;
 
 import edu.unbosque.services.AuthorService;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

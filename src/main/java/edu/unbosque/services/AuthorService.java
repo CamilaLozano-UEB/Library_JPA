@@ -1,7 +1,6 @@
 package edu.unbosque.services;
 
 
-
 import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.repositories.AuthorRepository;
 import edu.unbosque.jpa.repositories.AuthorRepositoryImpl;
@@ -60,4 +59,19 @@ public class AuthorService {
 
     }
 
+    public void modifyAuthor(Integer id, String name, String country) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        authorRepository = new AuthorRepositoryImpl(entityManager);
+        authorRepository.modify(id, name, country);
+        entityManager.close();
+    }
+
+    public void deleteAuthor(Integer id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        authorRepository = new AuthorRepositoryImpl(entityManager);
+        authorRepository.delete(id);
+        entityManager.close();
+    }
 }

@@ -1,11 +1,11 @@
 body {
-    background-image: url("https://www.telemadrid.es/2019/07/16/programas/madrid-trabaja/libreria_2140595955_7143659_1300x731.jpg");
+    background-color: #273c75;
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    margin: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
     height: 100%;
 }
 
@@ -14,11 +14,41 @@ body {
     height: 100%;
 }
 
+.textItem {
+    background-color: #40739e;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    height: 25px;
+    font-family: "Calibri Light";
+    font-size: 20px;
+}
+
+form {
+    font-family: "Calibri Light";
+    font-size: 20px;
+    color: white;
+}
+
+h2 {
+    color: white;
+    font-family: "Calibri Light";
+}
+
+.formButton {
+    background-color: #40739e;
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+    height: 30px;
+}
+
 .button {
     font-size: 50px;
     height: 100%;
     width: 19.7%;
-    color: bisque;
+    color: white;
+    border: none;
     background-color: transparent;
 }
 

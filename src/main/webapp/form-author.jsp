@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>JPA Tutorial</title>
+    <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
 <div id="create-menu">
-    <h3>Crear Autor</h3>
+    <h2>Crear Autor</h2>
     <form action="./create-author">
-        Author name: <input type="text" id="name" name="name">
-        Author country: <input type="text" id="country" name="country">
-        <input type="submit" value="Create author!">
+        Author name: <input type="text" class="textItem" name="name">
+        Author country: <input type="text" class="textItem" name="country">
+        <input type="submit" class="formButton" value="Create author!">
     </form>
 </div>
 <div>
-    <h3>Modificar Autor</h3>
+    <h2>Modificar Autor</h2>
     <form action="./modify-author">
-        Author name: <input type="text" id="modify_name" name="name">
-        Author country: <input type="text" id="modify_country" name="country">
-        <input type="submit" value="Modify author!">
+        Author id: <input type="text" class="textItem" name="authorId" required>
+        Author name: <input type="text" class="textItem" name="name" required>
+        Author country: <input type="text" class="textItem" name="country" required>
+        <input type="submit" class="formButton" value="Modify author!">
     </form>
 </div>
 <div>
-    <h3>Eliminar Autor</h3>
-    <form action="./eraser-author">
-        Author name: <input type="text" id="eraser_name" name="name">
-        Author country: <input type="text" id="eraser_country" name="country">
-        <input type="submit" value="Remove author!">
+    <h2>Eliminar Autor</h2>
+    <form action="./delete-author">
+        Author id: <input type="text" class="textItem" name="authorId">
+        <input type="submit" class="formButton" value="Delete author!">
     </form>
 </div>
 </body>

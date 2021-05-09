@@ -10,7 +10,9 @@ import java.util.List;
         @NamedQuery(name = "Author.findByName",
                 query = "SELECT a FROM Author a WHERE a.name = :name"),
         @NamedQuery(name = "Author.modify",
-                query = "UPDATE Author a SET a.name= :name, a.country= :country WHERE a.id = :id")
+                query = "UPDATE Author a SET a.name= :name, a.country= :country WHERE a.id = :id"),
+        @NamedQuery(name = "Author.remove",
+                query = "DELETE FROM Author a WHERE a.id = :id")
 })
 public class Author {
 
