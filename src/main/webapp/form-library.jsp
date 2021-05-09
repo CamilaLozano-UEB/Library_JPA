@@ -9,7 +9,7 @@
     <div id="create-menu">
         <h2>Crear Biblioteca</h2>
         <form action="./create-library">
-            Library name: <input type="text" id="name" name="name">
+            Library name: <input type="text" id="name" name="name"required>
             <input type="submit" value="Create library!">
         </form>
     </div>
