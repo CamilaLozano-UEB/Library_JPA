@@ -9,7 +9,7 @@
 <div>
     <h2>Crear Libro</h2>
     <form action="./create-book">
-        <input type="text" class="textItem" name="authorId" required>
+        Author id: <input type="text" class="textItem" name="authorId" required>
         <br>
         Book title: <input type="text" class="textItem" name="title" required>
         <br>
@@ -19,9 +19,7 @@
         <br>
         <input type="submit" class="formButton" value="Create book!">
     </form>
-</div>
 
-<div>
     <h2>Modificar Libro</h2>
     <form action="./modify-book">
         Book id: <input type="text" class="textItem" name="bookId" required>
@@ -36,9 +34,8 @@
         <br>
         <input type="submit" class="formButton" value="Modify book!">
     </form>
-</div>
 
-<div>
+
     <h2>Eliminar Libro</h2>
     <form action="./delete-book">
         Book id: <input type="text" class="textItem" name="bookId" required>
@@ -46,6 +43,48 @@
         <input type="submit" class="formButton" value="Delete book!">
     </form>
 </div>
+<div>
+    <table class="table" id="authorsTbl">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th># Books</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
 
+    function printTable(elementId, servlet, columns) {
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                const data = JSON.parse(xhr.responseText);
+                const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
+
+                data.map(d => {
+                    const newRow = tbodyRef.insertRow();
+
+                    columns.map(c => {
+                        const cell = newRow.insertCell();
+                        const text = document.createTextNode(d[c]);
+                        cell.appendChild(text);
+                    });
+                });
+            }
+        }
+        xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
+        xhr.send(null);
+    }
+
+    // Printing authors
+    printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country']);
+
+</script>
 </body>
 </html>

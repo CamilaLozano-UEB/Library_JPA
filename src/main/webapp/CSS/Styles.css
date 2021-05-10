@@ -52,3 +52,20 @@ h2 {
     background-color: transparent;
 }
 
+.table {
+    background-color: #40739e;
+    border-collapse: collapse;
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    color: white;
+}
+
+td {
+    border: #273c75 2px solid;
+}
+
+th {
+    border: #273c75 2px solid;
+
+}

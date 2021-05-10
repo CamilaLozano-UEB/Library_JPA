@@ -30,10 +30,12 @@ public class Edition {
 
     // FetchType.EAGER: When we retrieve a Library, we'll also automatically retrieve all of its corresponding Editions
     // CascadeType.PERSIST: When we save a superhero, its movies will also be saved
+
     @ManyToMany(mappedBy = "editions", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Library> libraries = new HashSet<>();
 
-    public Edition() {}
+    public Edition() {
+    }
 
     public Edition(String description, Date releaseYear) {
         this.description = description;

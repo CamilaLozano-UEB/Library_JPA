@@ -43,6 +43,7 @@ public class Book {
     public Book(String title, String isbn, String genre) {
         this.title = title;
         this.isbn = isbn;
+        this.genre = genre;
     }
 
     public Book(Integer bookId, String title, String isbn, String genre) {
