@@ -31,8 +31,7 @@
         <br>
         <input type="submit" class="formButton" value="Modify library!">
     </form>
-</div>
-<div>
+
     <h2>Eliminar Biblioteca</h2>
     <form action="./delete-library">
         <label> Library id: </label>
