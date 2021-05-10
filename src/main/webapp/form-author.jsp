@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,27 +9,45 @@
 <div id="create-menu">
     <h2>Crear Autor</h2>
     <form action="./create-author">
-        Author name: <input type="text" class="textItem" name="name" required>
+        <label>Author name: </label>
+        <label>
+            <input type="text" class="textItem" name="name" required>
+        </label>
         <br>
-        Author country: <input type="text" class="textItem" name="country" required>
+        <label>Author country: </label>
+        <label>
+            <input type="text" class="textItem" name="country" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Create author!">
     </form>
     <br>
     <h2>Modificar Autor</h2>
     <form action="./modify-author">
-        Author id: <input type="text" class="textItem" name="authorId" required>
+        <label>Author id: </label>
+        <label>
+            <input type="text" class="textItem" name="authorId" required>
+        </label>
         <br>
-        Author name: <input type="text" class="textItem" name="name" required>
+        <label>Author name: </label>
+        <label>
+            <input type="text" class="textItem" name="name" required>
+        </label>
         <br>
-        Author country: <input type="text" class="textItem" name="country" required>
+        <label>Author country: </label>
+        <label>
+            <input type="text" class="textItem" name="country" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Modify author!">
     </form>
 
     <h2>Eliminar Autor</h2>
     <form action="./delete-author">
-        Author id: <input type="text" class="textItem" name="authorId" required>
+        <label>Author id: </label>
+        <label>
+            <input type="text" class="textItem" name="authorId" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Delete author!">
     </form>

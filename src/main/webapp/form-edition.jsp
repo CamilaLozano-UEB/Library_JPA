@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,34 +10,106 @@
 <div id="create-menu">
     <h2>Crear Edición</h2>
     <form action="./create-edition">
-        Book id: <input type="text" class="textItem" name="bookId" required>
+        <label> Edition id: </label>
+        <label>
+            <input type="text" class="textItem" name="bookId" required>
+        </label>
         <br>
-        Description: <input type="text" class="textItem" name="description" required>
+        <label>Book id: </label>
+        <label>
+            <input type="text" class="textItem" name="bookId" required>
+        </label>
         <br>
-        Release year: <input type="date" class="textItem" name="releaseYear" required>
+        <label>Description: </label>
+        <label>
+            <input type="text" class="textItem" name="description" required>
+        </label>
+        <br>
+        <label>Release year: </label>
+        <label>
+            <input type="date" class="textItem" name="releaseYear" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Create edition!">
     </form>
     <br>
-    <h2>Modificar Autor</h2>
+    <h2>Modificar Edición</h2>
     <form action="./modify-edition">
-        Edition id: <input type="text" class="textItem" name="editionId" required>
+        <label>Edition id: </label>
+        <label>
+            <input type="text" class="textItem" name="editionId" required>
+        </label>
         <br>
-        Book id: <input type="text" class="textItem" name="bookId" required>
+        <label>Book id: </label>
+        <label>
+            <input type="text" class="textItem" name="bookId" required>
+        </label>
         <br>
-        Description: <input type="text" class="textItem" name="description" required>
+        <label>Description: </label>
+        <label>
+            <input type="text" class="textItem" name="description" required>
+        </label>
         <br>
-        Release year: <input type="date" class="textItem" name="releaseYear" required>
+        <label>Release year: </label>
+        <label>
+            <input type="date" class="textItem" name="releaseYear" required>
+        </label>
         <br>
-        <input type="submit" class="formButton" value="Modify author!">
+        <input type="submit" class="formButton" value="Modify edition!">
     </form>
 
-    <h2>Eliminar Autor</h2>
+    <h2>Eliminar Edición</h2>
     <form action="./delete-edition">
-        Edition id: <input type="text" class="textItem" name="editionId" required>
+        <label> Edition id:</label>
+        <label>
+            <input type="text" class="textItem" name="editionId" required>
+        </label>
         <br>
-        <input type="submit" class="formButton" value="Delete author!">
+        <input type="submit" class="formButton" value="Delete edition!">
     </form>
 </div>
+
+<div>
+    <table class="table" id="editionTbl">
+        <thead>
+        <tr>
+            <th>Edition id</th>
+            <th>Book id</th>
+            <th>Description</th>
+            <th>Release Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+
+    function printTable(elementId, servlet, columns) {
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                const data = JSON.parse(xhr.responseText);
+                const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
+
+                data.map(d => {
+                    const newRow = tbodyRef.insertRow();
+
+                    columns.map(c => {
+                        const cell = newRow.insertCell();
+                        const text = document.createTextNode(d[c]);
+                        cell.appendChild(text);
+                    });
+                });
+            }
+        }
+        xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
+        xhr.send(null);
+    }
+
+    // Printing authors
+    printTable(elementId = 'editionTbl', servlet = 'list-edition', columns = ['editionId', 'Description', 'releaseYear', 'bookId']);
+</script>
 </body>
 </html>

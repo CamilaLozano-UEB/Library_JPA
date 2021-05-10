@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,28 +9,55 @@
 <div>
     <h2>Crear Libro</h2>
     <form action="./create-book">
-        Author id: <input type="text" class="textItem" name="authorId" required>
+        <label>Author id: </label>
+        <label>
+            <input type="text" class="textItem" name="authorId" required>
+        </label>
         <br>
-        Book title: <input type="text" class="textItem" name="title" required>
+        <label> Book title:</label>
+        <label>
+            <input type="text" class="textItem" name="title" required>
+        </label>
         <br>
-        Book ISBN: <input type="text" class="textItem" name="isbn" required>
+        <label>Book ISBN:</label>
+        <label>
+            <input type="text" class="textItem" name="isbn" required>
+        </label>
         <br>
-        Book Genre <input type="text" class="textItem" name="genre" required>
+        <label>Book Genre </label>
+        <label>
+            <input type="text" class="textItem" name="genre" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Create book!">
     </form>
 
     <h2>Modificar Libro</h2>
     <form action="./modify-book">
-        Book id: <input type="text" class="textItem" name="bookId" required>
+        <label>Book id: </label>
+        <label>
+            <input type="text" class="textItem" name="bookId" required>
+        </label>
         <br>
-        Author id: <input type="text" class="textItem" name="authorId" required>
+        <label>Author id: </label>
+        <label>
+            <input type="text" class="textItem" name="authorId" required>
+        </label>
         <br>
-        Book title: <input type="text" class="textItem" name="title" required>
+        <label>Book title: </label>
+        <label>
+            <input type="text" class="textItem" name="title" required>
+        </label>
         <br>
-        Book ISBN: <input type="text" class="textItem" name="isbn" required>
+        <label>Book ISBN: </label>
+        <label>
+            <input type="text" class="textItem" name="isbn" required>
+        </label>
         <br>
-        Book Genre <input type="text" class="textItem" name="genre" required>
+        <label>Book Genre </label>
+        <label>
+            <input type="text" class="textItem" name="genre" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Modify book!">
     </form>
@@ -38,19 +65,23 @@
 
     <h2>Eliminar Libro</h2>
     <form action="./delete-book">
-        Book id: <input type="text" class="textItem" name="bookId" required>
+        <label>Book id: </label>
+        <label>
+            <input type="text" class="textItem" name="bookId" required>
+        </label>
         <br>
         <input type="submit" class="formButton" value="Delete book!">
     </form>
 </div>
 <div>
-    <table class="table" id="authorsTbl">
+    <table class="table" id="booksTbl">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th># Books</th>
-            <th>Country</th>
+            <th>Book id</th>
+            <th>Author Id</th>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Genre</th>
         </tr>
         </thead>
         <tbody>
@@ -82,8 +113,8 @@
         xhr.send(null);
     }
 
-    // Printing authors
-    printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country']);
+    // Printing books
+    printTable(elementId = 'booksTbl', servlet = 'list-books', columns = ['bookId', 'authorId', 'title', 'isbn', 'genre']);
 
 </script>
 </body>
