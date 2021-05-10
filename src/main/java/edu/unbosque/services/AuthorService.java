@@ -38,9 +38,7 @@ public class AuthorService {
                     author.getCountry()
             ));
         }
-
         return authorsPOJO;
-
     }
 
     public Author saveAuthor(String name, String country) {
@@ -54,6 +52,7 @@ public class AuthorService {
         Author persistedAuthor = authorRepository.save(author).get();
 
         entityManager.close();
+        entityManagerFactory.close();
 
         return persistedAuthor;
 

@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @WebServlet(name = "createBookServlet", value = "/create-book")
 public class CreateBookServlet extends HttpServlet {
@@ -19,13 +24,20 @@ public class CreateBookServlet extends HttpServlet {
         String title = request.getParameter("title");
         String isbn = request.getParameter("isbn");
         String genre = request.getParameter("genre");
-        Integer authorId = Integer.parseInt(request.getParameter("authorId"));
+        String description= request.getParameter("description");
 
-        BookService bookService = new BookService();
-        bookService.saveBook(title, isbn, authorId, genre);
+        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        try {
+            Date releaseYear = format.parse(request.getParameter("releaseYear"));
+            Integer authorId = Integer.parseInt(request.getParameter("authorId"));
+            BookService bookService = new BookService();
+
+            bookService.saveBook(title, isbn, authorId, genre,description,releaseYear);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         response.sendRedirect("./form-book.jsp");
-
     }
 
 }

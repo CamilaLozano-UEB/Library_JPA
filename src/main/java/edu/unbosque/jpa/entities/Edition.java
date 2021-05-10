@@ -37,13 +37,13 @@ public class Edition {
     public Edition() {
     }
 
-    public Edition(String description, Date releaseYear) {
+    public Edition(Book book, String description, Date releaseYear) {
+        this.book = book;
         this.description = description;
         this.releaseYear = releaseYear;
     }
 
-    public Edition(Integer editionId, String description, Date releaseYear) {
-        this.editionId = editionId;
+    public Edition(String description, Date releaseYear) {
         this.description = description;
         this.releaseYear = releaseYear;
     }
