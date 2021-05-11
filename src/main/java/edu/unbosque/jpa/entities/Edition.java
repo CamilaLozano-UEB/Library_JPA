@@ -1,9 +1,7 @@
 package edu.unbosque.jpa.entities;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "Edition") // Optional
@@ -33,6 +31,9 @@ public class Edition {
 
     @ManyToMany(mappedBy = "editions", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Library> libraries = new HashSet<>();
+
+    @OneToMany(mappedBy = "editions", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Rent> rents = new ArrayList<>();
 
     public Edition() {
     }
@@ -87,6 +88,13 @@ public class Edition {
     public void addLibrary(Library library) {
         libraries.add(library);
         library.getEditions().add(this);
+    }
+    public List<Rent> getRents() {
+        return rents;
+    }
+    public void addRent(Rent rent) {
+        rents.add(rent);
+        rent.setEdition_id(this);
     }
 
 }
