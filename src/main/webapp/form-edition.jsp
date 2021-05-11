@@ -10,11 +10,6 @@
 <div id="create-menu">
     <h2>Crear Edición</h2>
     <form action="./create-edition">
-        <label> Edition id: </label>
-        <label>
-            <input type="text" class="textItem" name="bookId" required>
-        </label>
-        <br>
         <label>Book id: </label>
         <label>
             <input type="text" class="textItem" name="bookId" required>

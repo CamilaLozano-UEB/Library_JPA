@@ -24,15 +24,15 @@ public class CreateBookServlet extends HttpServlet {
         String title = request.getParameter("title");
         String isbn = request.getParameter("isbn");
         String genre = request.getParameter("genre");
-        String description= request.getParameter("description");
+        String description = request.getParameter("description");
 
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         try {
             Date releaseYear = format.parse(request.getParameter("releaseYear"));
             Integer authorId = Integer.parseInt(request.getParameter("authorId"));
             BookService bookService = new BookService();
 
-            bookService.saveBook(title, isbn, authorId, genre,description,releaseYear);
+            bookService.saveBook(title, isbn, authorId, genre, description, releaseYear);
         } catch (ParseException e) {
             e.printStackTrace();
         }

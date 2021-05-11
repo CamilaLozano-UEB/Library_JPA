@@ -1,4 +1,4 @@
-package edu.unbosque.servlets;
+package edu.unbosque.servlets.author;
 
 import com.google.gson.Gson;
 import edu.unbosque.services.AuthorService;
