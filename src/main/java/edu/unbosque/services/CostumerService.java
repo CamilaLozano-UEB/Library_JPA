@@ -67,7 +67,7 @@ public class CostumerService {
         entityManager.close();
     }
 
-    public void deleteAuthor(String email) {
+    public void deleteCostumer(String email) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         costumerRepository = new CostumerRepositoryImpl(entityManager);
