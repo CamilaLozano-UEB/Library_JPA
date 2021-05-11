@@ -55,10 +55,9 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Author author) {
         entityManager.getTransaction().begin();
-        Author author = this.findById(id).get();
-        if (author == null) return;
+
         entityManager.remove(author);
         entityManager.getTransaction().commit();
     }

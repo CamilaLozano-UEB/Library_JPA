@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Stateless
@@ -69,14 +70,20 @@ public class BookService {
 
         authorRepository = new AuthorRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
+        editionRepository = new EditionRepositoryImpl(entityManager);
 
         authorRepository.findById(bookRepository.findById(bookId).get().getAuthor().getAuthorId()).get().
                 removeBook(bookRepository.findById(bookId).get());
 
+        List<Edition> editions = editionRepository.findAll();
+        if (editions != null)
+            for (int i = 0; i < editions.size(); i++)
+                if (editions.get(i).getBook().getBookId() == bookId)
+                    editionRepository.delete(editions.get(i).getEditionId());
+
         bookRepository.delete(bookId);
-
         entityManager.close();
-
+        entityManagerFactory.close();
     }
 
 

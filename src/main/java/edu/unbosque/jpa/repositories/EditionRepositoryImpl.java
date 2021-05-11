@@ -2,6 +2,7 @@ package edu.unbosque.jpa.repositories;
 
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
+
 import javax.persistence.EntityManager;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class EditionRepositoryImpl implements EditionRepository {
 
     @Override
     public List<Edition> findAll() {
-        return entityManager.createQuery("from Author").getResultList();
+        return entityManager.createQuery("from Edition").getResultList();
     }
 
     @Override
@@ -53,7 +54,7 @@ public class EditionRepositoryImpl implements EditionRepository {
     @Override
     public void delete(Integer id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(this.findById(id));
+        entityManager.remove(this.findById(id).get());
         entityManager.getTransaction().commit();
     }
 }

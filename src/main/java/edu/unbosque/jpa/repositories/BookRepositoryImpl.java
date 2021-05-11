@@ -63,10 +63,12 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public void delete(Integer bookId) {
         entityManager.getTransaction().begin();
-        Book book = this.findById(bookId).get();
-        if (book == null) return;
-        entityManager.remove(book);
-        entityManager.getTransaction().commit();
+        Optional<Book> book = this.findById(bookId);
+        book.ifPresent(book1 -> {
+            entityManager.remove(book1);
+            entityManager.getTransaction().commit();
+
+        });
     }
 
 
