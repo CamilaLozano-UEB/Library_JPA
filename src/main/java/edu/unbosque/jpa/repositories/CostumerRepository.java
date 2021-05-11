@@ -10,6 +10,8 @@ public interface CostumerRepository {
 
     List<Costumer> findAll();
     Optional<Costumer> save(Costumer costumer);
+    void modify(String email,String firstName, String lastName, String gender, Integer age);
 
+    void delete(String email);
 
 }

@@ -1,5 +1,6 @@
 package edu.unbosque.jpa.repositories;
 
+import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.entities.Costumer;
 
 import javax.persistence.EntityManager;
@@ -50,5 +51,26 @@ public class CostumerRepositoryImpl implements CostumerRepository {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void modify(String email, String firstName, String lastName, String gender, Integer age) {
+        entityManager.getTransaction().begin();
+        Costumer costumer = this.findByEmail(email).get();
+        if (costumer == null) return;
+        costumer.setFirst_name(firstName);
+        costumer.setLast_name(lastName);
+        costumer.setGender(gender);
+        costumer.setAge(age.toString());
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void delete(String email) {
+        entityManager.getTransaction().begin();
+        Costumer costumer = this.findByEmail(email).get();
+        if (costumer == null) return;
+        entityManager.remove(costumer);
+        entityManager.getTransaction().commit();
     }
 }
