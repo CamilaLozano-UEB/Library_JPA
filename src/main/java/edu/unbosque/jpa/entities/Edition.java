@@ -32,7 +32,7 @@ public class Edition {
     @ManyToMany(mappedBy = "editions", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Library> libraries = new HashSet<>();
 
-    @OneToMany(mappedBy = "editions", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "edition", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rent> rents = new ArrayList<>();
 
     public Edition() {
@@ -94,7 +94,7 @@ public class Edition {
     }
     public void addRent(Rent rent) {
         rents.add(rent);
-        rent.setEdition_id(this);
+        rent.setEdition(this);
     }
 
 }

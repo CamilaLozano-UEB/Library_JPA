@@ -27,7 +27,7 @@ public class Rent {
 
     @ManyToOne
     @JoinColumn(name = "edition_id")
-    private Edition edition_id;
+    private Edition edition;
 
     public Rent() {}
 
@@ -56,12 +56,12 @@ public class Rent {
         this.renting_date = renting_date;
     }
 
-    public Edition getEdition_id() {
-        return edition_id;
+    public Edition getEdition() {
+        return edition;
     }
 
-    public void setEdition_id(Edition edition_id) {
-        this.edition_id = edition_id;
+    public void setEdition(Edition edition) {
+        this.edition = edition;
     }
 
     public Costumer getCostumer() {
@@ -71,5 +71,6 @@ public class Rent {
     public void setCustomer(Costumer costumer) {
         this.costumer = costumer;
     }
+
 
 }
