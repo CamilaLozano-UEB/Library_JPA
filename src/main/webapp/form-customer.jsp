@@ -68,7 +68,7 @@
     </form>
 
     <h2>Eliminar Cliente</h2>
-    <form action="./delete-author">
+    <form action="./delete-customer">
         <label>Customer email: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
