@@ -18,7 +18,7 @@ public class CustomerService {
 
     CustomerRepository customerRepository;
 
-    public List<CustomerPOJO> listcustomer() {
+    public List<CustomerPOJO> listCustomer() {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
