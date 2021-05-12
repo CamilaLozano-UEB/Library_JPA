@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Costumer") // Optional
+@Table(name = "Customer") // Optional
 @NamedQueries({
-        @NamedQuery(name = "Costumer.findByEmail",
-                query = "SELECT c FROM Costumer c WHERE c.email = :email"),
-        @NamedQuery(name = "Costumer.findByFirst_name",
-                query = "SELECT c FROM Costumer c WHERE c.first_name = :first_name"),
-        @NamedQuery(name = "Costumer.findByLast_name",
-                query = "SELECT c FROM Costumer c WHERE c.last_name = :last_name"),
-        @NamedQuery(name = "Costumer.findAll",
-                query = "SELECT c FROM Costumer c")
+        @NamedQuery(name = "Customer.findByEmail",
+                query = "SELECT c FROM Customer  c WHERE c.email = :email"),
+        @NamedQuery(name = "Customer.findByFirst_name",
+                query = "SELECT c FROM Customer c WHERE c.first_name = :first_name"),
+        @NamedQuery(name = "Customer.findByLast_name",
+                query = "SELECT c FROM Customer c WHERE c.last_name = :last_name"),
+        @NamedQuery(name = "Customer.findAll",
+                query = "SELECT c FROM Customer c")
 })
-public class Costumer {
+public class Customer {
     @Id
     @Column(name = "email")
     private String email;
@@ -33,20 +33,20 @@ public class Costumer {
     @Column(name = "age")
     private String age;
 
-    @OneToMany(mappedBy = "costumer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Rent> rents = new ArrayList<>();
 
-    public Costumer() {
+    public Customer() {
     }
 
-    public Costumer(String first_name, String last_name, String gender, String age) {
+    public Customer(String first_name, String last_name, String gender, String age) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.gender = gender;
         this.age = age;
     }
 
-    public Costumer(String email, String first_name, String last_name, String gender, String age) {
+    public Customer(String email, String first_name, String last_name, String gender, String age) {
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;

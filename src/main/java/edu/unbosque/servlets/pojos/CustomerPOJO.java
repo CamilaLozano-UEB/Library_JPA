@@ -1,13 +1,13 @@
 package edu.unbosque.servlets.pojos;
 
-public class CostumerPOJO {
+public class CustomerPOJO {
     private String email;
     private String firstName;
     private String lastName;
     private String gender;
     private Integer age;
 
-    public CostumerPOJO(String email, String firstName, String lastName, String gender, Integer age) {
+    public CustomerPOJO(String email, String firstName, String lastName, String gender, Integer age) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

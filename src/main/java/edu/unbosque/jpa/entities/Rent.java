@@ -20,7 +20,7 @@ public class Rent {
 
     @ManyToOne
     @JoinColumn(name = "email")
-    private Costumer costumer;
+    private Customer customer;
 
     @Column(name = "renting_date")
     private String renting_date;
@@ -64,12 +64,12 @@ public class Rent {
         this.edition = edition;
     }
 
-    public Costumer getCostumer() {
-        return costumer;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomer(Costumer costumer) {
-        this.costumer = costumer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Stateless
 public class RentService {
-    CostumerRepository costumerRepository;
+    CustomerRepository costumerRepository;
     RentRepository rentRepository;
     EditionRepository editionRepository;
 
@@ -20,12 +20,12 @@ public class RentService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        costumerRepository = new CostumerRepositoryImpl(entityManager);
+        costumerRepository = new CustomerRepositoryImpl(entityManager);
         rentRepository = new RentRepositoryImpl(entityManager);
         editionRepository = new EditionRepositoryImpl(entityManager);
 
         Rent rent = new Rent(rentId, renting_date) ;
-        Optional<Costumer> costumer = costumerRepository.findByEmail(email);
+        Optional<Customer> costumer = costumerRepository.findByEmail(email);
         costumer.ifPresent(a -> {
             a.addRent(rent);
             costumerRepository.save(a);
