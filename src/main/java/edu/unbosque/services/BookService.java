@@ -5,11 +5,14 @@ import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
 import edu.unbosque.jpa.repositories.*;
+import edu.unbosque.servlets.pojos.AuthorPOJO;
+import edu.unbosque.servlets.pojos.BookPOJO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +23,30 @@ public class BookService {
     AuthorRepository authorRepository;
     BookRepository bookRepository;
     EditionRepository editionRepository;
+
+    public List<BookPOJO> listBooks() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        bookRepository = new BookRepositoryImpl(entityManager);
+        List<Book> books = bookRepository.findAll();
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        List<BookPOJO> bookPOJOList = new ArrayList<>();
+        for (Book book : books) {
+            bookPOJOList.add(new BookPOJO(
+                    book.getBookId(),
+                    book.getTitle(),
+                    book.getIsbn(),
+                    book.getAuthor().getAuthorId(),
+                    book.getAuthor().getName(),
+                    book.getGenre()
+            ));
+        }
+        return bookPOJOList;
+    }
 
     public void saveBook(String title, String isbn, Integer authorId, String genre, String bookDescription, Date releaseYear) {
 
