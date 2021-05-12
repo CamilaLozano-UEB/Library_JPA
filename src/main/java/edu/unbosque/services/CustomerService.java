@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class CustomerService {
@@ -43,14 +44,14 @@ public class CustomerService {
         return customerPOJOS;
     }
 
-    public Customer saveCustomer(String firstName, String lastName, String gender, Integer age) {
+    public Customer saveCustomer(String email,String firstName, String lastName, String gender, Integer age) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         customerRepository = new CustomerRepositoryImpl(entityManager);
 
-        Customer customer = new Customer(firstName,lastName,  gender, age.toString());
+        Customer customer = new Customer(email,firstName,lastName,  gender, age.toString());
         Customer persistedCustomer = customerRepository.save(customer).get();
 
         entityManager.close();
@@ -58,8 +59,23 @@ public class CustomerService {
         return persistedCustomer;
 
     }
+    public boolean findCustomer(String email) {
 
-    public void modifycustomer(String email,String firstName, String lastName, String gender, Integer age) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        customerRepository = new CustomerRepositoryImpl(entityManager);
+
+        if(customerRepository.findByEmail(email).equals(Optional.empty())){
+            entityManager.close();
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    public void modifyCustomer(String email, String firstName, String lastName, String gender, Integer age) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);
@@ -67,7 +83,7 @@ public class CustomerService {
         entityManager.close();
     }
 
-    public void deletecustomer(String email) {
+    public void deleteCustomer(String email) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);

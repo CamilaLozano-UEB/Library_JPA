@@ -1,6 +1,5 @@
 package edu.unbosque.servlets.custumer;
 
-import edu.unbosque.services.AuthorService;
 import edu.unbosque.services.CustomerService;
 
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ModifyCustomerServlet", value = "/modify-customer")
 public class ModifyCustomerServlet extends HttpServlet {
@@ -22,8 +22,9 @@ public class ModifyCustomerServlet extends HttpServlet {
         int age= Integer.parseInt(ageString);
 
         CustomerService customerService = new CustomerService();
-        customerService.modifycustomer(email,first_name,last_name,gender,age);
-
+        if (customerService.findCustomer(email)){
+            customerService.modifyCustomer(email,first_name,last_name,gender,age);
+        }
 
         response.sendRedirect("./form-customer.jsp");
     }

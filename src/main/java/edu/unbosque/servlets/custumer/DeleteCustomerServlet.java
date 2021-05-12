@@ -1,6 +1,5 @@
 package edu.unbosque.servlets.custumer;
 
-import edu.unbosque.services.AuthorService;
 import edu.unbosque.services.CustomerService;
 
 import javax.servlet.ServletException;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "RemoveCustomerServlet", value = "/delete-customer")
 public class DeleteCustomerServlet extends HttpServlet {
@@ -18,8 +18,9 @@ public class DeleteCustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         CustomerService customerService = new CustomerService();
-        customerService.deletecustomer(email);
-
+        if (customerService.findCustomer(email)){
+            customerService.deleteCustomer(email);
+        }
         response.sendRedirect("./form-customer.jsp");
     }
 }

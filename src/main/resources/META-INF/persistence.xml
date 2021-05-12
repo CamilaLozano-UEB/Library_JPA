@@ -11,7 +11,7 @@
         <class>edu.unbosque.jpa.entities.Edition</class>
         <class>edu.unbosque.jpa.entities.Library</class>
         <class>edu.unbosque.jpa.entities.Rent</class>
-        <class>edu.unbosque.jpa.entities.Costumer</class>
+        <class>edu.unbosque.jpa.entities.Customer</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
