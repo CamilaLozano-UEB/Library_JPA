@@ -29,16 +29,6 @@
             <input type="text" class="textItem" name="genre" required>
         </label>
         <br>
-        <label>Description: </label>
-        <label>
-            <input type="text" class="textItem" name="description" required>
-        </label>
-        <br>
-        <label>Release year:</label>
-        <label>
-            <input type="date" class="textItem" name="releaseYear" required>
-        </label>
-        <br>
         <input type="submit" class="formButton" value="Create book!">
     </form>
 
