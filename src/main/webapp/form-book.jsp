@@ -89,6 +89,7 @@
         <tr>
             <th>Book id</th>
             <th>Author Id</th>
+            <th>Author Name</th>
             <th>Title</th>
             <th>ISBN</th>
             <th>Genre</th>
@@ -123,8 +124,7 @@
         xhr.send(null);
     }
 
-    // Printing books
-    printTable(elementId = 'booksTbl', servlet = 'list-books', columns = ['bookId', 'authorId', 'title', 'isbn', 'genre']);
+    printTable(elementId = 'booksTbl', servlet = 'list-books', columns = ['bookId', 'authorId', 'authorName', 'title', 'isbn', 'genre']);
 
 </script>
 </body>

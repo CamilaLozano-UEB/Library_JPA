@@ -1,4 +1,4 @@
-package edu.unbosque.servlets;
+package edu.unbosque.servlets.library;
 
 
 import edu.unbosque.services.LibraryService;
