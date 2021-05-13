@@ -21,6 +21,12 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     }
 
     @Override
+    public Optional<Library> findById(Integer libraryId) {
+        Library library = entityManager.find(Library.class, libraryId);
+        return library != null ? Optional.of(library) : Optional.empty();
+    }
+
+    @Override
     public Optional<Library> save(Library library) {
         try {
             entityManager.getTransaction().begin();
@@ -31,6 +37,24 @@ public class LibraryRepositoryImpl implements LibraryRepository {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    @Override
+    public void modify(Integer libraryId, String name) {
+        entityManager.getTransaction().begin();
+        Library library = this.findById(libraryId).get();
+        if (library == null) return;
+        library.setName(name);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void delete(Integer libraryId) {
+        entityManager.getTransaction().begin();
+        Library library = this.findById(libraryId).get();
+        if (library == null) return;
+        entityManager.remove(library);
+        entityManager.getTransaction().commit();
     }
 
 }

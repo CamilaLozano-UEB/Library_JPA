@@ -1,7 +1,6 @@
 package edu.unbosque.services;
 
 
-
 import edu.unbosque.jpa.entities.Library;
 import edu.unbosque.jpa.repositories.LibraryRepository;
 import edu.unbosque.jpa.repositories.LibraryRepositoryImpl;
@@ -57,6 +56,15 @@ public class LibraryService {
 
         return;
 
+    }
+
+    public void modifyLibrary(Integer libraryId, String name) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+        libraryRepository.modify(libraryId, name);
+        entityManager.close();
+        entityManagerFactory.close();
     }
 
 }
