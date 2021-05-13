@@ -67,4 +67,13 @@ public class LibraryService {
         entityManagerFactory.close();
     }
 
+    public void deleteLibrary(Integer libraryId){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+        libraryRepository.delete(libraryId);
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
 }

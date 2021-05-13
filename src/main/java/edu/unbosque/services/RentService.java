@@ -1,6 +1,8 @@
 package edu.unbosque.services;
 
-import edu.unbosque.jpa.entities.*;
+import edu.unbosque.jpa.entities.Customer;
+import edu.unbosque.jpa.entities.Edition;
+import edu.unbosque.jpa.entities.Rent;
 import edu.unbosque.jpa.repositories.*;
 
 import javax.ejb.Stateless;
@@ -15,7 +17,7 @@ public class RentService {
     RentRepository rentRepository;
     EditionRepository editionRepository;
 
-    public void saveRent(Integer rentId,String email,Integer edition_id, String renting_date) {
+    public void saveRent(Integer rentId, String email, Integer edition_id, String renting_date) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -24,7 +26,7 @@ public class RentService {
         rentRepository = new RentRepositoryImpl(entityManager);
         editionRepository = new EditionRepositoryImpl(entityManager);
 
-        Rent rent = new Rent(rentId, renting_date) ;
+        Rent rent = new Rent(rentId, renting_date);
         Optional<Customer> costumer = costumerRepository.findByEmail(email);
         costumer.ifPresent(a -> {
             a.addRent(rent);

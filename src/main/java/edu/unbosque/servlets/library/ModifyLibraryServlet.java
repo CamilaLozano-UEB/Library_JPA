@@ -15,12 +15,12 @@ import java.io.IOException;
 public class ModifyLibraryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         Integer libraryId = Integer.parseInt(request.getParameter("libraryId"));
         String name = request.getParameter("name");
-
         LibraryService libraryService = new LibraryService();
         libraryService.modifyLibrary(libraryId, name);
 
-        response.sendRedirect("./form-book.jsp");
+        response.sendRedirect("./form-library.jsp");
     }
 }
