@@ -22,14 +22,17 @@ public class ModifyEditionServlet extends HttpServlet {
         Integer bookId = Integer.parseInt(request.getParameter("bookId"));
         String description = request.getParameter("description");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String message = "";
+
         try {
             Date releaseYear = format.parse(request.getParameter("releaseYear"));
             EditionService editionService = new EditionService();
 
-            editionService.modifyEdition(editionId, bookId, description, releaseYear);
+            message = editionService.modifyEdition(editionId, bookId, description, releaseYear);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("./form-edition.jsp");
+        request.setAttribute("modifyEditionMessage", message);
+        request.getRequestDispatcher("/form-edition.jsp").forward(request, response);
     }
 }

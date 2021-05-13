@@ -15,8 +15,10 @@ public class DeleteEditionServlet extends HttpServlet {
 
         Integer editionId = Integer.parseInt(request.getParameter("editionId"));
         EditionService editionService = new EditionService();
-        editionService.deleteEdition(editionId);
 
-        response.sendRedirect("./form-edition.jsp");
+        String message = editionService.deleteEdition(editionId);
+
+        request.setAttribute("DeleteEditionMessage", message);
+        request.getRequestDispatcher("/form-edition.jsp").forward(request, response);
     }
 }

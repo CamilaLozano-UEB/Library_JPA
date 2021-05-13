@@ -1,6 +1,5 @@
 package edu.unbosque.servlets.Edition;
 
-import edu.unbosque.services.BookService;
 import edu.unbosque.services.EditionService;
 
 import javax.servlet.*;
@@ -27,11 +26,11 @@ public class CreateEditionServlet extends HttpServlet {
             Date releaseYear = format.parse(request.getParameter("releaseYear"));
             EditionService editionService = new EditionService();
 
-           // message = editionService.saveEdition(bookId, description, releaseYear);
+            message = editionService.saveEdition(bookId, description, releaseYear);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         request.setAttribute("createEditionMessage", message);
-        request.getRequestDispatcher("/form-author.jsp").forward(request, response);
+        request.getRequestDispatcher("/form-edition.jsp").forward(request, response);
     }
 }

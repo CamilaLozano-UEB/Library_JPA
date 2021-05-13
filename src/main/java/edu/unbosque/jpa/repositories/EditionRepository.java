@@ -14,7 +14,7 @@ public interface EditionRepository {
 
     Optional<Edition> save(Edition edition);
 
-    void modify(Integer editionId, Book book, String description,  Date releaseYear);
+    String modify(Integer editionId, Book book, String description, Date releaseYear);
 
-    void delete(Integer id);
+    String delete(Integer id);
 }

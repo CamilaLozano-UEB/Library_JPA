@@ -41,20 +41,29 @@ public class EditionRepositoryImpl implements EditionRepository {
     }
 
     @Override
-    public void modify(Integer editionId, Book book, String description, Date releaseYear) {
+    public String modify(Integer editionId, Book book, String description, Date releaseYear) {
         entityManager.getTransaction().begin();
-        Edition edition = this.findById(editionId).get();
-        if (edition == null) return;
-        edition.setBook(book);
-        edition.setDescription(description);
-        edition.setReleaseYear(releaseYear);
+        Optional<Edition> edition = this.findById(editionId);
+        if (!edition.isPresent()) return "La edición del libro ingresada no existe!";
+
+        edition.get().setBook(book);
+        edition.get().setDescription(description);
+        edition.get().setReleaseYear(releaseYear);
         entityManager.getTransaction().commit();
+
+        return "Se ha modificado la edición exitosamente!";
     }
 
     @Override
-    public void delete(Integer id) {
+    public String delete(Integer id) {
         entityManager.getTransaction().begin();
-        entityManager.remove(this.findById(id).get());
+
+        Optional<Edition> edition = this.findById(id);
+        if (!edition.isPresent()) return "No se ha encontrado ninguna edición con ese id";
+
+        entityManager.remove(edition.get());
         entityManager.getTransaction().commit();
+
+        return "Se ha eliminado correctamente la edición";
     }
 }

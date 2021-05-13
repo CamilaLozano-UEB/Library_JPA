@@ -14,6 +14,7 @@ import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class EditionService {
     EditionRepository editionRepository;
@@ -41,43 +42,50 @@ public class EditionService {
         return editionPOJOList;
     }
 
-    public void saveEdition(Integer bookId, String description, Date releaseYear) {
+    public String saveEdition(Integer bookId, String description, Date releaseYear) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         editionRepository = new EditionRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
 
-        Book book = bookRepository.findById(bookId).get();
-        if (book == null) return;
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (!book.isPresent()) return "El id del libro ingresado no existe!";
 
-        Edition edition = new Edition(book, description, releaseYear);
+        Edition edition = new Edition(book.get(), description, releaseYear);
         editionRepository.save(edition);
 
         entityManager.close();
         entityManagerFactory.close();
+        return "Se ha registrado correctamente la edición!";
     }
 
-    public void modifyEdition(Integer editionId, Integer bookId, String description, Date releaseYear) {
+    public String modifyEdition(Integer editionId, Integer bookId, String description, Date releaseYear) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         editionRepository = new EditionRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
 
-        Book book = bookRepository.findById(bookId).get();
-        if (book == null) return;
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (!book.isPresent()) return "El id del libro ingresado no existe";
 
-        editionRepository.modify(editionId, book, description, releaseYear);
+        String message = editionRepository.modify(editionId, book.get(), description, releaseYear);
 
         entityManager.close();
         entityManagerFactory.close();
+
+        return message;
     }
 
-    public void deleteEdition(Integer editionId) {
+    public String deleteEdition(Integer editionId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         editionRepository = new EditionRepositoryImpl(entityManager);
-        editionRepository.delete(editionId);
+        String message = editionRepository.delete(editionId);
+
         entityManager.close();
         entityManagerFactory.close();
+
+        return message;
     }
 }

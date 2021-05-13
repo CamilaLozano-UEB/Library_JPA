@@ -65,7 +65,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Eliminar edición!">
-        <p style="display: inline"><%=request.getAttribute("deleteEditionMessage")%>
+        <p style="display: inline"><%=request.getAttribute("DeleteEditionMessage")%>
         </p>
     </form>
 </div>
