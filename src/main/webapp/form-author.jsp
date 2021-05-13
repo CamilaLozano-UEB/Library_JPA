@@ -9,48 +9,52 @@
 <div id="create-menu">
     <h2>Crear Autor</h2>
     <form action="./create-author">
-        <label>Author name: </label>
+        <label>Nombre: </label>
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
         <br>
-        <label>Author country: </label>
+        <label>País: </label>
         <label>
             <input type="text" class="textItem" name="country" required>
         </label>
         <br>
-        <input type="submit" class="formButton" onclick="mostrar()" value="Create author!">
-        <p style="display: inline"><%=request.getAttribute("message")%>
+        <input type="submit" class="formButton" value="Crear autor!">
+        <p style="display: inline"><%=request.getAttribute("createAuthorMessage")%>
         </p>
     </form>
     <h2>Modificar Autor</h2>
     <form action="./modify-author">
-        <label>Author id: </label>
+        <label>Id: </label>
         <label>
             <input type="text" class="textItem" name="authorId" required>
         </label>
         <br>
-        <label>Author name: </label>
+        <label>Nombre: </label>
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
         <br>
-        <label>Author country: </label>
+        <label>País: </label>
         <label>
             <input type="text" class="textItem" name="country" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Modify author!">
+        <input type="submit" class="formButton" value="Modificar!">
+        <p style="display: inline"><%=request.getAttribute("modifyAuthorMessage")%>
+        </p>
     </form>
 
     <h2>Eliminar Autor</h2>
     <form action="./delete-author">
-        <label>Author id: </label>
+        <label>Id: </label>
         <label>
             <input type="text" class="textItem" name="authorId" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Delete author!">
+        <input type="submit" class="formButton" value="Eliminar autor!">
+        <p style="display: inline"><%=request.getAttribute("deleteAuthorMessage")%>
+        </p>
     </form>
 </div>
 <div>
@@ -58,9 +62,9 @@
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th># Books</th>
-            <th>Country</th>
+            <th>Nombre</th>
+            <th># Library</th>
+            <th>País</th>
         </tr>
         </thead>
         <tbody>
@@ -73,7 +77,7 @@
 
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
+            if (xhr.readyState === 4) {
                 const data = JSON.parse(xhr.responseText);
                 const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
 

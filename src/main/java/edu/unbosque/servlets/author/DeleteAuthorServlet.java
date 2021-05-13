@@ -15,8 +15,10 @@ public class DeleteAuthorServlet extends HttpServlet {
         Integer authorId = Integer.parseInt(request.getParameter("authorId"));
 
         AuthorService authorService = new AuthorService();
-        authorService.deleteAuthor(authorId);
 
-        response.sendRedirect("./form-author.jsp");
+        String message = authorService.deleteAuthor(authorId);
+        request.setAttribute("deleteAuthorMessage", message);
+
+        request.getRequestDispatcher("/form-author.jsp").forward(request, response);
     }
 }

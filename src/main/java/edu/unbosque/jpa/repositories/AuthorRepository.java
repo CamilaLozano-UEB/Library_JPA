@@ -12,9 +12,9 @@ public interface AuthorRepository {
 
     List<Author> findAll();
 
-    Optional<Author> save(Author author);
+    String save(Author author);
 
-    void modify(Integer id, String name, String country);
+    String modify(Integer id, String name, String country);
 
     void delete(Author author);
 

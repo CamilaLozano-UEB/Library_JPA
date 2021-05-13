@@ -45,7 +45,7 @@ public class AuthorService {
         return authorsPOJO;
     }
 
-    public Author saveAuthor(String name, String country) {
+    public String saveAuthor(String name, String country) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -53,24 +53,24 @@ public class AuthorService {
         authorRepository = new AuthorRepositoryImpl(entityManager);
 
         Author author = new Author(name, country);
-        Author persistedAuthor = authorRepository.save(author).get();
+        String message = authorRepository.save(author);
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return persistedAuthor;
-
+        return message;
     }
 
-    public void modifyAuthor(Integer id, String name, String country) {
+    public String modifyAuthor(Integer id, String name, String country) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         authorRepository = new AuthorRepositoryImpl(entityManager);
-        authorRepository.modify(id, name, country);
+        String message = authorRepository.modify(id, name, country);
         entityManager.close();
+        return message;
     }
 
-    public void deleteAuthor(Integer id) {
+    public String deleteAuthor(Integer id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         authorRepository = new AuthorRepositoryImpl(entityManager);
@@ -79,7 +79,7 @@ public class AuthorService {
 
         Optional<Author> author = authorRepository.findById(id);
 
-        if (!author.isPresent()) return;
+        if (!author.isPresent()) return "No existe el autor con el id ingresado!";
 
         List<Book> books = bookRepository.findAll();
         List<Edition> editions = editionRepository.findAll();
@@ -97,5 +97,6 @@ public class AuthorService {
 
         authorRepository.delete(author.get());
         entityManager.close();
+        return "Se ha eliminado el autor exitosamente!";
     }
 }

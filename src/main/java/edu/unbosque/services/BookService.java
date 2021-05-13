@@ -48,7 +48,7 @@ public class BookService {
         return bookPOJOList;
     }
 
-    public void saveBook(String title, String isbn, Integer authorId, String genre, String bookDescription, Date releaseYear) {
+    public String saveBook(String title, String isbn, Integer authorId, String genre, String bookDescription, Date releaseYear) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -59,6 +59,7 @@ public class BookService {
 
 
         Optional<Author> author = authorRepository.findById(authorId);
+        if (!author.isPresent()) return "El id del autor ingresado no existe";
         author.ifPresent(a -> {
             Book book = new Book(title, isbn, genre);
             a.addBook(book);
@@ -67,7 +68,7 @@ public class BookService {
         });
         entityManager.close();
         entityManagerFactory.close();
-
+        return "Se ha creado exitosamente el libro!";
     }
 
     public void modifyBook(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {

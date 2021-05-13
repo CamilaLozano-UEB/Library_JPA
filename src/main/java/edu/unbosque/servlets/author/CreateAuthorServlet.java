@@ -20,12 +20,11 @@ public class CreateAuthorServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         AuthorService authorService = new AuthorService();
-        authorService.saveAuthor(name, country);
 
-        String message = "hello";
-        request.setAttribute("message", message);
+        String message = authorService.saveAuthor(name, country);
+        request.setAttribute("createAuthorMessage", message);
 
-        response.sendRedirect("./form-author.jsp");
+        request.getRequestDispatcher("/form-author.jsp").forward(request, response);
     }
 
 }

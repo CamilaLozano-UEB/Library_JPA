@@ -32,26 +32,26 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         return author != null ? Optional.of(author) : Optional.empty();
     }
 
-    public Optional<Author> save(Author author) {
+    public String save(Author author) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(author);
             entityManager.getTransaction().commit();
-            return Optional.of(author);
+            return "Se ha registrado exitosamente!";
         } catch (Exception e) {
-            e.printStackTrace();
+            return "Ha ocurrido un error al registrar el autor!";
         }
-        return Optional.empty();
     }
 
     @Override
-    public void modify(Integer id, String name, String country) {
+    public String modify(Integer id, String name, String country) {
         entityManager.getTransaction().begin();
-        Author author = this.findById(id).get();
-        if (author == null) return;
-        author.setName(name);
-        author.setCountry(country);
+        Optional<Author> author = this.findById(id);
+        if (!author.isPresent()) return "No existe el autor con el id ingresado!";
+        author.get().setName(name);
+        author.get().setCountry(country);
         entityManager.getTransaction().commit();
+        return "Se ha modificado exitosamente!";
     }
 
     @Override

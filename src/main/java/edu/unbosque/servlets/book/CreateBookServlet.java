@@ -3,6 +3,7 @@ package edu.unbosque.servlets.book;
 
 import edu.unbosque.services.BookService;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import java.util.Locale;
 @WebServlet(name = "createBookServlet", value = "/create-book")
 public class CreateBookServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         response.setContentType("text/html");
 
@@ -27,17 +28,18 @@ public class CreateBookServlet extends HttpServlet {
         String description = request.getParameter("description");
 
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String message = "";
         try {
             Date releaseYear = format.parse(request.getParameter("releaseYear"));
             Integer authorId = Integer.parseInt(request.getParameter("authorId"));
             BookService bookService = new BookService();
 
-            bookService.saveBook(title, isbn, authorId, genre, description, releaseYear);
+            message = bookService.saveBook(title, isbn, authorId, genre, description, releaseYear);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        response.sendRedirect("./form-book.jsp");
+        request.setAttribute("modifyAuthorMessage", message);
+        request.getRequestDispatcher("/form-author.jsp").forward(request, response);
     }
 
 }

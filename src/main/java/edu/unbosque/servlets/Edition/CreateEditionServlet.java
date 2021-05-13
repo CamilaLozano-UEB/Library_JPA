@@ -22,14 +22,16 @@ public class CreateEditionServlet extends HttpServlet {
         String description = request.getParameter("description");
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+        String message = "";
         try {
             Date releaseYear = format.parse(request.getParameter("releaseYear"));
             EditionService editionService = new EditionService();
 
-            editionService.saveEdition(bookId, description, releaseYear);
+           // message = editionService.saveEdition(bookId, description, releaseYear);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("./form-edition.jsp");
+        request.setAttribute("createEditionMessage", message);
+        request.getRequestDispatcher("/form-author.jsp").forward(request, response);
     }
 }
