@@ -1,6 +1,5 @@
 package edu.unbosque.servlets.book;
 
-import edu.unbosque.services.AuthorService;
 import edu.unbosque.services.BookService;
 
 import javax.servlet.*;
