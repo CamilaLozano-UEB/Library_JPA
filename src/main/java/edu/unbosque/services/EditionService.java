@@ -35,7 +35,8 @@ public class EditionService {
                     edition.getEditionId(),
                     edition.getDescription(),
                     edition.getReleaseYear(),
-                    edition.getBook()));
+                    edition.getBook().getBookId(),
+                    edition.getBook().getTitle()));
         }
         return editionPOJOList;
     }

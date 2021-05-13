@@ -19,9 +19,10 @@
             <input type="text" class="textItem" name="country" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Create author!">
+        <input type="submit" class="formButton" onclick="mostrar()" value="Create author!">
+        <p style="display: inline"><%=request.getAttribute("message")%>
+        </p>
     </form>
-    <br>
     <h2>Modificar Autor</h2>
     <form action="./modify-author">
         <label>Author id: </label>
@@ -91,9 +92,13 @@
         xhr.send(null);
     }
 
-    // Printing authors
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country']);
 
+    const ps = document.getElementsByTagName("p");
+    for (let i = 0; i < ps.length; i++)
+        if (ps[i].textContent.trim() === "null")
+            ps[i].textContent = "";
 </script>
+
 </body>
 </html>

@@ -1,11 +1,5 @@
 package edu.unbosque.servlets.pojos;
 
-import edu.unbosque.jpa.entities.Book;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import java.util.Date;
 
 public class EditionPOJO {
@@ -13,13 +7,15 @@ public class EditionPOJO {
     private Integer editionId;
     private String description;
     private Date releaseYear;
-    private Book book;
+    private Integer bookId;
+    private String bookTitle;
 
-    public EditionPOJO(Integer editionId, String description, Date releaseYear, Book book) {
+    public EditionPOJO(Integer editionId, String description, Date releaseYear, Integer bookId, String bookTitle) {
         this.editionId = editionId;
         this.description = description;
         this.releaseYear = releaseYear;
-        this.book = book;
+        this.bookId = bookId;
+        this.bookTitle = bookTitle;
     }
 
     public Integer getEditionId() {
@@ -46,11 +42,19 @@ public class EditionPOJO {
         this.releaseYear = releaseYear;
     }
 
-    public Book getBook() {
-        return book;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
     }
 }

@@ -70,6 +70,7 @@
         <tr>
             <th>Edition id</th>
             <th>Book id</th>
+            <th>Book Name</th>
             <th>Description</th>
             <th>Release Year</th>
         </tr>
@@ -102,9 +103,7 @@
         xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
         xhr.send(null);
     }
-
-    // Printing authors
-    printTable(elementId = 'editionTbl', servlet = 'list-edition', columns = ['editionId', 'Description', 'releaseYear', 'bookId']);
+    printTable(elementId = 'editionTbl', servlet = 'list-edition', columns = ['editionId', 'bookId', 'bookTitle', 'description', 'releaseYear']);
 </script>
 </body>
 </html>
