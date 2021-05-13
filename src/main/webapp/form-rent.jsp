@@ -21,47 +21,45 @@
         <br>
         <label>Renting Date</label>
         <label>
-            <input type="text" class="textItem" name="renting_date" required>
+            <input type="date" class="textItem" name="releaseYear" required>
         </label>
         <br>
         <input type="submit" class="formButton" value="Create Rent!">
     </form>
 
-    <h2>Modificar Renta</h2>
-    <form action="./modify-rent">
-        <label>Rent id: </label>
-        <label>
-            <input type="text" class="textItem" name="rent_id" required>
-        </label>
-        <br>
-        <label>email: </label>
+    <h2>Filtrar por rango de fechas</h2>
+    <form action="./find-rentbydays">
+
+        <label>Email del cliente: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
-        <label> Edition id:</label>
+        <label> Rango de fecha 1:</label>
         <label>
-            <input type="text" class="textItem" name="editionId" required>
+            <input type="date" class="textItem" name="date1" required>
         </label>
         <br>
-        <label>Renting Date</label>
+        <label>Rango de fecha 2</label>
         <label>
-            <input type="text" class="textItem" name="renting_date" required>
+            <input type="date" class="textItem" name="date1" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Modify rent!">
+        <input type="submit" class="formButton" value="Find rents!">
     </form>
-
-
-    <h2>Eliminar Renta</h2>
-    <form action="./delete-rent">
-        <label>Rent id: </label>
-        <label>
-            <input type="text" class="textItem" name="rent_id" required>
-        </label>
-        <br>
-        <input type="submit" class="formButton" value="Delete rent!">
-    </form>
+</div>
+<div>
+    <table class="table" id="rentsTbl">
+        <thead>
+        <tr>
+            <th>Rent Id</th>
+            <th>Email</th>
+            <th>Books</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
