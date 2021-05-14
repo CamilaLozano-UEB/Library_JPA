@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
+<!--div containing the three forms to create, modify and delete an author-->
 <div id="create-menu">
     <h2>Crear Autor</h2>
     <form action="./create-author">
@@ -61,6 +62,7 @@
     </form>
 </div>
 <div>
+    <!-- Create a table that shows the objects that were saved from the form-->
     <table class="table" id="authorsTbl">
         <thead>
         <tr>

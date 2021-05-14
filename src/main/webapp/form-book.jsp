@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
+<!--div containing the three forms to create, modify and delete an book-->
 <div>
     <h2>Crear Libro</h2>
     <form action="./create-book">
@@ -40,6 +41,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Crear libro!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("createBookMessage")%>
         </p>
     </form>
@@ -72,6 +74,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Modificar libro!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("modifyBookMessage")%>
         </p>
     </form>
@@ -84,10 +87,12 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Eliminar libro!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("deleteBookMessage")%>
         </p>
     </form>
 </div>
+<!-- Create a table that shows the objects that were saved from the form-->
 <div>
     <table class="table" id="booksTbl">
         <thead>
@@ -106,14 +111,23 @@
 </div>
 <script>
 
+    /**
+     * Modify the table adding the information that receives from the servlet on JSON format
+     * @param elementId the id of the table
+     * @param servlet the servlet
+     * @param columns the columns of the table
+     */
+
     function printTable(elementId, servlet, columns) {
 
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
+            // if the operation is complete
             if (xhr.readyState == 4) {
+                // Parse the response text
                 const data = JSON.parse(xhr.responseText);
                 const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
-
+                // Create rows and columns with the information of the servlet
                 data.map(d => {
                     const newRow = tbodyRef.insertRow();
 
@@ -129,8 +143,9 @@
         xhr.send(null);
     }
 
+    // Invoke the method
     printTable(elementId = 'booksTbl', servlet = 'list-books', columns = ['bookId', 'authorId', 'authorName', 'title', 'isbn', 'genre']);
-
+    // Remove all null messages from the servlet response on p tags
     const ps = document.getElementsByTagName("p");
     for (let i = 0; i < ps.length; i++)
         if (ps[i].textContent.trim() === "null")

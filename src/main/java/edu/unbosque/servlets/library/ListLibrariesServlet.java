@@ -15,8 +15,8 @@ import java.util.List;
 @WebServlet(name = "listLibrariesServlet", value = "/list-libraries")
 public class ListLibrariesServlet extends HttpServlet {
     /**
-     * The data of the forms is captured and after being validated they are redirected to the services
-     *
+     * Manages the list operation on the service, get a list of LibraryPOJO and print the information to the .jsp on JSON
+     * format
      * @param request, the request of the client
      * @param response the response of the client
      * @throws IOException input and output exceptions
