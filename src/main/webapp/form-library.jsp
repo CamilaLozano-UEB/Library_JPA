@@ -67,7 +67,7 @@
         <label>
             <input type="text" class="textItem" name="editionId" required>
         </label>
-        <input type="submit" class="formButton" value="Asociar!">
+        <input type="submit" class="formButton" value="Desasociar!">
         <p style="display: inline"><%=request.getAttribute("disassociateLibraryMessage")%>
     </form>
 </div>

@@ -7,6 +7,7 @@ import edu.unbosque.jpa.entities.Library;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class LibraryRepositoryImpl implements LibraryRepository {
 
@@ -42,8 +43,8 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     @Override
     public String modify(Integer libraryId, String name) {
         entityManager.getTransaction().begin();
-        Optional <Library> library = this.findById(libraryId);
-        if(!library.isPresent()) return "No existe la libreria con el id ingresado!";
+        Optional<Library> library = this.findById(libraryId);
+        if (!library.isPresent()) return "No existe la libreria con el id ingresado!";
         library.get().setName(name);
         entityManager.getTransaction().commit();
         return "Se ha modificado exitosamente!";
@@ -52,9 +53,16 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     @Override
     public void delete(Integer libraryId) {
         entityManager.getTransaction().begin();
-        Library library = this.findById(libraryId).get();
-        if (library == null) return;
-        entityManager.remove(library);
+        Optional<Library> library = this.findById(libraryId);
+
+        if (!library.isPresent()) return;
+
+        Set<Edition> libraryEditions = library.get().getEditions();
+
+        for (Edition libraryEdition : libraryEditions)
+            library.get().removeEdition(libraryEdition);
+
+        entityManager.remove(library.get());
         entityManager.getTransaction().commit();
     }
 

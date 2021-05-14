@@ -2,6 +2,7 @@ package edu.unbosque.jpa.repositories;
 
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
+import edu.unbosque.jpa.entities.Library;
 
 import javax.persistence.EntityManager;
 import java.util.Date;
@@ -66,6 +67,9 @@ public class EditionRepositoryImpl implements EditionRepository {
 
         Optional<Edition> edition = this.findById(id);
         if (!edition.isPresent()) return "No se ha encontrado ninguna edición con ese id";
+
+        for (Library library : edition.get().getLibraries())
+            library.removeEdition(edition.get());
 
         entityManager.remove(edition.get());
         entityManager.getTransaction().commit();

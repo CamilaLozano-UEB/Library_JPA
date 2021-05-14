@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "disassociateEditionLibraryServlet", value = "/disassociate")
+@WebServlet(name = "disassociateEditionLibraryServlet", value = "/disassociate-library")
 public class disassociateEditionLibraryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
