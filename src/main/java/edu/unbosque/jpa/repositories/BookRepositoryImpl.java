@@ -21,7 +21,6 @@ public class BookRepositoryImpl implements BookRepository {
         return book != null ? Optional.of(book) : Optional.empty();
     }
 
-
     /*public Optional<Book> findByNameNamedQuery(String title) {
         Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class)
                 .setParameter("title", title)
@@ -46,18 +45,24 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public void modify(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {
+    public String modify(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {
         entityManager.getTransaction().begin();
-        Book book = this.findById(bookId).get();
-        if (book == null) return;
+        Optional<Book> book = this.findById(bookId);
+        if (!book.isPresent()) return "El id del libro no existe!";
+
         Author author = (Author) entityManager.createQuery("SELECT a FROM Author a WHERE a.id = :id").
                 setParameter("id", authorId).getSingleResult();
-        if (author == null) return;
-        book.setAuthor(author);
-        book.setTitle(title);
-        book.setIsbn(isbnNumber);
-        book.setGenre(genre);
+
+        if (author == null) return "El id del libro no existe!";
+
+        book.get().setAuthor(author);
+        book.get().setTitle(title);
+        book.get().setIsbn(isbnNumber);
+        book.get().setGenre(genre);
+
         entityManager.getTransaction().commit();
+
+        return "Se ha modificado exitosamente!";
     }
 
     @Override

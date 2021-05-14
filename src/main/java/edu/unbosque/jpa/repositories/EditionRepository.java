@@ -12,6 +12,8 @@ public interface EditionRepository {
 
     List<Edition> findAll();
 
+    List<Edition> findByBookId(Integer id);
+
     Optional<Edition> save(Edition edition);
 
     String modify(Integer editionId, Book book, String description, Date releaseYear);

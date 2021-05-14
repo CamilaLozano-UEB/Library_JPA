@@ -38,7 +38,7 @@ public class CreateBookServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        request.setAttribute("modifyAuthorMessage", message);
+        request.setAttribute("createBookMessage", message);
         request.getRequestDispatcher("/form-book.jsp").forward(request, response);
     }
 

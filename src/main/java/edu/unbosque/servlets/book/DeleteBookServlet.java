@@ -15,9 +15,10 @@ public class DeleteBookServlet extends HttpServlet {
 
         BookService bookService = new BookService();
 
-        bookService.deleteBook(bookId);
+        String message = bookService.deleteBook(bookId);
 
-        response.sendRedirect("./form-book.jsp");
+        request.setAttribute("deleteBookMessage", message);
+        request.getRequestDispatcher("/form-book.jsp").forward(request, response);
     }
 
 }

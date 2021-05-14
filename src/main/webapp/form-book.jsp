@@ -9,90 +9,95 @@
 <div>
     <h2>Crear Libro</h2>
     <form action="./create-book">
-        <label>Author id: </label>
+        <label>Id del autor: </label>
         <label>
             <input type="text" class="textItem" name="authorId" required>
         </label>
         <br>
-        <label> Book title:</label>
+        <label>Título del libro:</label>
         <label>
             <input type="text" class="textItem" name="title" required>
         </label>
         <br>
-        <label>Book ISBN:</label>
+        <label>ISBN:</label>
         <label>
             <input type="text" class="textItem" name="isbn" required>
         </label>
         <br>
-        <label>Book Genre </label>
+        <label>Género: </label>
         <label>
             <input type="text" class="textItem" name="genre" required>
         </label>
         <br>
-        <label>Description: </label>
+        <label>Descripción: </label>
         <label>
             <input type="text" class="textItem" name="description" required>
         </label>
         <br>
-        <label>Release year:</label>
+        <label>Año de lanzamiento: </label>
         <label>
             <input type="date" class="textItem" name="releaseYear" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Create book!">
+        <input type="submit" class="formButton" value="Crear libro!">
+        <p style="display: inline"><%=request.getAttribute("createBookMessage")%>
+        </p>
     </form>
 
     <h2>Modificar Libro</h2>
     <form action="./modify-book">
-        <label>Book id: </label>
+        <label>Id de libro: </label>
         <label>
             <input type="text" class="textItem" name="bookId" required>
         </label>
         <br>
-        <label>Author id: </label>
+        <label>Id del autor: </label>
         <label>
             <input type="text" class="textItem" name="authorId" required>
         </label>
         <br>
-        <label>Book title: </label>
+        <label>Título del libro: </label>
         <label>
             <input type="text" class="textItem" name="title" required>
         </label>
         <br>
-        <label>Book ISBN: </label>
+        <label>ISBN: </label>
         <label>
             <input type="text" class="textItem" name="isbn" required>
         </label>
         <br>
-        <label>Book Genre </label>
+        <label>Género: </label>
         <label>
             <input type="text" class="textItem" name="genre" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Modify book!">
+        <input type="submit" class="formButton" value="Modificar libro!">
+        <p style="display: inline"><%=request.getAttribute("modifyBookMessage")%>
+        </p>
     </form>
-
 
     <h2>Eliminar Libro</h2>
     <form action="./delete-book">
-        <label>Book id: </label>
+        <label>Id del libro: </label>
         <label>
             <input type="text" class="textItem" name="bookId" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Delete book!">
+        <input type="submit" class="formButton" value="Eliminar libro!">
+        <p style="display: inline"><%=request.getAttribute("deleteBookMessage")%>
+        </p>
     </form>
 </div>
 <div>
     <table class="table" id="booksTbl">
         <thead>
         <tr>
-            <th>Book id</th>
-            <th>Author Id</th>
-            <th>Author Name</th>
-            <th>Title</th>
+            <th>Id del libro</th>
+            <th>Id del autor</th>
+            <th>Nombre del autor</th>
+            <th>Título</th>
             <th>ISBN</th>
-            <th>Genre</th>
+            <th>Género</th>
         </tr>
         </thead>
         <tbody>
@@ -126,6 +131,10 @@
 
     printTable(elementId = 'booksTbl', servlet = 'list-books', columns = ['bookId', 'authorId', 'authorName', 'title', 'isbn', 'genre']);
 
+    const ps = document.getElementsByTagName("p");
+    for (let i = 0; i < ps.length; i++)
+        if (ps[i].textContent.trim() === "null")
+            ps[i].textContent = "";
 </script>
 </body>
 </html>

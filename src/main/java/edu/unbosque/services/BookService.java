@@ -1,11 +1,9 @@
 package edu.unbosque.services;
 
-
 import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
 import edu.unbosque.jpa.repositories.*;
-import edu.unbosque.servlets.pojos.AuthorPOJO;
 import edu.unbosque.servlets.pojos.BookPOJO;
 
 import javax.ejb.Stateless;
@@ -60,6 +58,7 @@ public class BookService {
 
         Optional<Author> author = authorRepository.findById(authorId);
         if (!author.isPresent()) return "El id del autor ingresado no existe";
+
         author.ifPresent(a -> {
             Book book = new Book(title, isbn, genre);
             a.addBook(book);
@@ -71,18 +70,21 @@ public class BookService {
         return "Se ha creado exitosamente el libro!";
     }
 
-    public void modifyBook(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {
+    public String modifyBook(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         authorRepository = new AuthorRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
 
         Optional<Author> author = authorRepository.findById(authorId);
+        if (!author.isPresent()) return "El id del autor no existe!";
 
-        authorRepository.findById(bookRepository.findById(bookId).get().getAuthor().getAuthorId()).get().
-                removeBook(bookRepository.findById(bookId).get());
+        Optional<Book> book = bookRepository.findById(bookId);
+        if (!book.isPresent()) return "El id del libro no existe!";
 
-        bookRepository.modify(bookId, authorId, title, isbnNumber, genre);
+        authorRepository.findById(book.get().getAuthor().getAuthorId()).get().removeBook(book.get());
+
+        String message = bookRepository.modify(bookId, authorId, title, isbnNumber, genre);
 
         author.ifPresent(a -> {
             a.addBook(bookRepository.findById(bookId).get());
@@ -90,9 +92,11 @@ public class BookService {
         });
         entityManager.close();
         entityManagerFactory.close();
+
+        return message;
     }
 
-    public void deleteBook(Integer bookId) {
+    public String deleteBook(Integer bookId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -100,18 +104,22 @@ public class BookService {
         bookRepository = new BookRepositoryImpl(entityManager);
         editionRepository = new EditionRepositoryImpl(entityManager);
 
-        authorRepository.findById(bookRepository.findById(bookId).get().getAuthor().getAuthorId()).get().
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        if (!book.isPresent()) return "No existe un libro con ese id";
+
+        authorRepository.findById(book.get().getAuthor().getAuthorId()).get().
                 removeBook(bookRepository.findById(bookId).get());
 
-        List<Edition> editions = editionRepository.findAll();
-        if (editions != null)
-            for (int i = 0; i < editions.size(); i++)
-                if (editions.get(i).getBook().getBookId() == bookId)
-                    editionRepository.delete(editions.get(i).getEditionId());
+        List<Edition> editions = editionRepository.findByBookId(bookId);
+
+        for (Edition edition : editions) editionRepository.delete(edition.getEditionId());
 
         bookRepository.delete(bookId);
         entityManager.close();
         entityManagerFactory.close();
+
+        return "Se ha eliminado el libro exitosamente!";
     }
 
 

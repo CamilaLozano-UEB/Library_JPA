@@ -18,9 +18,10 @@ public class ModifyBookServlet extends HttpServlet {
         String genre = request.getParameter("genre");
 
         BookService bookService = new BookService();
-        bookService.modifyBook(bookId, authorId, title, isbn, genre);
+        String message = bookService.modifyBook(bookId, authorId, title, isbn, genre);
 
-        response.sendRedirect("./form-book.jsp");
+        request.setAttribute("createBookMessage", message);
+        request.getRequestDispatcher("/form-book.jsp").forward(request, response);
     }
 
 }

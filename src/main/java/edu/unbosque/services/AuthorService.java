@@ -81,18 +81,13 @@ public class AuthorService {
 
         if (!author.isPresent()) return "No existe el autor con el id ingresado!";
 
-        List<Book> books = bookRepository.findAll();
-        List<Edition> editions = editionRepository.findAll();
+        List<Book> books = author.get().getBooks();
 
         author.get().getBooks().clear();
         for (Book book : books) {
-            if (book.getAuthor().getAuthorId().equals(author.get().getAuthorId())) {
-                for (Edition edition : editions) {
-                    if (edition.getBook().equals(book))
-                        editionRepository.delete(edition.getEditionId());
-                }
-                bookRepository.delete(book.getBookId());
-            }
+            for (Edition edition : editionRepository.findByBookId(book.getBookId()))
+                    editionRepository.delete(edition.getEditionId());
+            bookRepository.delete(book.getBookId());
         }
 
         authorRepository.delete(author.get());
