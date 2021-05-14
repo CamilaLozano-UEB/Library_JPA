@@ -1,7 +1,10 @@
 package edu.unbosque.services;
 
 
+import edu.unbosque.jpa.entities.Edition;
 import edu.unbosque.jpa.entities.Library;
+import edu.unbosque.jpa.repositories.EditionRepository;
+import edu.unbosque.jpa.repositories.EditionRepositoryImpl;
 import edu.unbosque.jpa.repositories.LibraryRepository;
 import edu.unbosque.jpa.repositories.LibraryRepositoryImpl;
 import edu.unbosque.servlets.pojos.LibraryPOJO;
@@ -18,6 +21,7 @@ import java.util.Optional;
 public class LibraryService {
 
     LibraryRepository libraryRepository;
+    EditionRepository editionRepository;
 
     public List<LibraryPOJO> listLibraries() {
 
@@ -69,7 +73,7 @@ public class LibraryService {
         return message;
     }
 
-    public String deleteLibrary(Integer libraryId){
+    public String deleteLibrary(Integer libraryId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         libraryRepository = new LibraryRepositoryImpl(entityManager);
@@ -80,7 +84,46 @@ public class LibraryService {
         entityManagerFactory.close();
         return "Se ha eliminado la biblioteca exitosamente!";
 
+    }
 
+    public String associateEdition(Integer libraryId, Integer editionId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+        editionRepository = new EditionRepositoryImpl(entityManager);
+
+        Optional<Library> library = libraryRepository.findById(libraryId);
+
+        if (!library.isPresent()) return "No existe una librería con ese id";
+
+        Optional<Edition> edition = editionRepository.findById(editionId);
+
+        if (!edition.isPresent()) return "No existe una edición con ese id";
+
+        libraryRepository.associateEdition(edition.get(), library.get());
+
+        return "Se ha asociado exitosamente";
+    }
+
+    public String disassociateEdition(Integer libraryId, Integer editionId) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+        editionRepository = new EditionRepositoryImpl(entityManager);
+
+        Optional<Library> library = libraryRepository.findById(libraryId);
+
+        if (!library.isPresent()) return "No existe una librería con ese id";
+
+        Optional<Edition> edition = editionRepository.findById(editionId);
+
+        if (!edition.isPresent()) return "No existe una edición con ese id";
+
+        libraryRepository.disassociateEdition(edition.get(), library.get());
+
+        return "Se ha desasociado exitosamente";
     }
 
 }

@@ -87,11 +87,16 @@ public class Edition {
 
     public void addLibrary(Library library) {
         libraries.add(library);
-        library.getEditions().add(this);
     }
+
+    public void removeLibrary(Library library) {
+        libraries.remove(library);
+    }
+
     public List<Rent> getRents() {
         return rents;
     }
+
     public void addRent(Rent rent) {
         rents.add(rent);
         rent.setEdition(this);

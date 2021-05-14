@@ -1,6 +1,6 @@
 package edu.unbosque.jpa.repositories;
 
-import edu.unbosque.jpa.entities.Author;
+import edu.unbosque.jpa.entities.Edition;
 import edu.unbosque.jpa.entities.Library;
 
 import java.util.List;
@@ -17,5 +17,9 @@ public interface LibraryRepository {
     String modify(Integer libraryId, String name);
 
     void delete(Integer libraryId);
+
+    void associateEdition(Edition edition, Library library);
+
+    void disassociateEdition(Edition edition, Library library);
 
 }

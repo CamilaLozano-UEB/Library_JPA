@@ -13,7 +13,6 @@
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
-        <br>
         <input type="submit" class="formButton" value="Crear biblioteca!">
         <p style="display: inline"><%=request.getAttribute("createLibraryMessage")%>
 
@@ -25,12 +24,10 @@
         <label>
             <input type="text" class="textItem" name="libraryId" required>
         </label>
-        <br>
         <label> Nombre: </label>
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
-        <br>
         <input type="submit" class="formButton" value="Modificar biblioteca!">
         <p style="display: inline"><%=request.getAttribute("modifyLibraryMessage")%>
 
@@ -42,10 +39,36 @@
         <label>
             <input type="text" class="textItem" name="libraryId" required>
         </label>
-        <br>
         <input type="submit" class="formButton" value="Borrar biblioteca!">
         <p style="display: inline"><%=request.getAttribute("deleteLibraryMessage")%>
+    </form>
 
+    <h2>Asociar edición a librería</h2>
+    <form action="./associate-library">
+        <label>Id de la librería: </label>
+        <label>
+            <input type="text" class="textItem" name="libraryId" required>
+        </label>
+        <label>Id de la edición: </label>
+        <label>
+            <input type="text" class="textItem" name="editionId" required>
+        </label>
+        <input type="submit" class="formButton" value="Asociar!">
+        <p style="display: inline"><%=request.getAttribute("associateLibraryMessage")%>
+    </form>
+
+    <h2>Desasociar edición a librería</h2>
+    <form action="./disassociate-library">
+        <label>Id de la librería: </label>
+        <label>
+            <input type="text" class="textItem" name="libraryId" required>
+        </label>
+        <label>Id de la edición: </label>
+        <label>
+            <input type="text" class="textItem" name="editionId" required>
+        </label>
+        <input type="submit" class="formButton" value="Asociar!">
+        <p style="display: inline"><%=request.getAttribute("disassociateLibraryMessage")%>
     </form>
 </div>
 

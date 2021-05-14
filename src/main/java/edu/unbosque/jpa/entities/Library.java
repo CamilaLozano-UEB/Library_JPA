@@ -26,7 +26,8 @@ public class Library {
     )
     private Set<Edition> editions = new HashSet<>();
 
-    public Library() { }
+    public Library() {
+    }
 
     public Library(Integer libraryId, String name) {
         this.libraryId = libraryId;
@@ -55,6 +56,16 @@ public class Library {
 
     public Set<Edition> getEditions() {
         return editions;
+    }
+
+    public void addEdition(Edition edition) {
+        this.editions.add(edition);
+        edition.addLibrary(this);
+    }
+
+    public void removeEdition(Edition edition) {
+        this.editions.remove(edition);
+        edition.removeLibrary(this);
     }
 
 }

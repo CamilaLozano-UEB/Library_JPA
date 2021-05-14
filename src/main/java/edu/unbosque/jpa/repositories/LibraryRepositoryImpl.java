@@ -1,6 +1,7 @@
 package edu.unbosque.jpa.repositories;
 
 
+import edu.unbosque.jpa.entities.Edition;
 import edu.unbosque.jpa.entities.Library;
 
 import javax.persistence.EntityManager;
@@ -56,5 +57,20 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         entityManager.remove(library);
         entityManager.getTransaction().commit();
     }
+
+    @Override
+    public void associateEdition(Edition edition, Library library) {
+        entityManager.getTransaction().begin();
+        library.addEdition(edition);
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void disassociateEdition(Edition edition, Library library) {
+        entityManager.getTransaction().begin();
+        library.removeEdition(edition);
+        entityManager.getTransaction().commit();
+    }
+
 
 }
