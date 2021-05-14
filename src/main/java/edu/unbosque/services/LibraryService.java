@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Stateless
 public class LibraryService {
@@ -72,6 +73,8 @@ public class LibraryService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         libraryRepository = new LibraryRepositoryImpl(entityManager);
+        Optional<Library> library = libraryRepository.findById(libraryId);
+        if (!library.isPresent()) return "No existe la biblioteca con el id ingresado!";
         libraryRepository.delete(libraryId);
         entityManager.close();
         entityManagerFactory.close();

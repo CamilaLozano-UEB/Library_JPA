@@ -41,9 +41,9 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     @Override
     public String modify(Integer libraryId, String name) {
         entityManager.getTransaction().begin();
-        Library library = this.findById(libraryId).get();
-        if (library == null) return "No existe la libreria con el id ingresado!";
-        library.setName(name);
+        Optional <Library> library = this.findById(libraryId);
+        if(!library.isPresent()) return "No existe la libreria con el id ingresado!";
+        library.get().setName(name);
         entityManager.getTransaction().commit();
         return "Se ha modificado exitosamente!";
     }

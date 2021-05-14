@@ -19,9 +19,10 @@ public class ModifyLibraryServlet extends HttpServlet {
         Integer libraryId = Integer.parseInt(request.getParameter("libraryId"));
         String name = request.getParameter("name");
         LibraryService libraryService = new LibraryService();
-        String message= libraryService.modifyLibrary(libraryId, name);
+        String message = libraryService.modifyLibrary(libraryId, name);
         request.setAttribute("modifyLibraryMessage", message);
 
-        response.sendRedirect("./form-library.jsp");
+        request.getRequestDispatcher("./form-library.jsp").forward(request, response);
+
     }
 }
