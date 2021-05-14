@@ -14,7 +14,13 @@ import java.util.List;
 
 @WebServlet(name = "listAuthorsServlet", value = "/list-customer")
 public class ListCustomersServlet extends HttpServlet {
-
+    /**
+     * The data of the forms is captured and after being validated they are redirected to the services
+     *
+     * @param request, the request of the client
+     * @param response the response of the client
+     * @throws IOException input and output exceptions
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("application/json");

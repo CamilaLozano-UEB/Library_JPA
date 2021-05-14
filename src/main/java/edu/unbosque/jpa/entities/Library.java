@@ -4,10 +4,15 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Creation of table and Queries for the database
+ */
 @Entity
 @Table(name = "Library") // Optional
 public class Library {
-
+    /**
+     * Create of the columns for the costumer table and the relations
+     */
     @Id
     @GeneratedValue
     @Column(name = "library_id")
@@ -26,46 +31,85 @@ public class Library {
     )
     private Set<Edition> editions = new HashSet<>();
 
+    /**
+     * Void constructor for the library class
+     */
     public Library() {
     }
 
+    /**
+     * Constructor for the library class without principal key libraryId
+     *
+     * @param libraryId, id of library
+     * @param name,      name of library
+     */
     public Library(Integer libraryId, String name) {
         this.libraryId = libraryId;
         this.name = name;
     }
 
+    /**
+     * Constructor for the creation of a new entity of type library
+     *
+     * @param name, name of library
+     */
     public Library(String name) {
         this.name = name;
     }
 
-    public Integer getLibraryId() {
-        return libraryId;
-    }
-
-    public void setLibraryId(Integer libraryId) {
-        this.libraryId = libraryId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Edition> getEditions() {
-        return editions;
-    }
-
+    /**
+     * Method for add an edition to a library
+     *
+     * @param edition, edition entity
+     */
     public void addEdition(Edition edition) {
         this.editions.add(edition);
         edition.addLibrary(this);
     }
 
+    /**
+     * Method for remove an edition to a library
+     *
+     * @param edition, edition entity
+     */
     public void removeEdition(Edition edition) {
         this.editions.remove(edition);
         edition.removeLibrary(this);
     }
 
+    /**
+     * Getter for libraryId
+     *
+     * @return the library id
+     */
+    public Integer getLibraryId() {
+        return libraryId;
+    }
+
+    /**
+     * Getter for name
+     *
+     * @return the library name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Setter for name
+     *
+     * @param name, the new library name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Getter for Edition hash
+     *
+     * @return the edition hash
+     */
+    public Set<Edition> getEditions() {
+        return editions;
+    }
 }

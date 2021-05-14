@@ -7,6 +7,14 @@ public class CustomerPOJO {
     private String gender;
     private Integer age;
 
+    /**
+     *
+     * @param email, the customer id
+     * @param first_name, the customer name
+     * @param last_name, the customer last name
+     * @param gender, the customer gender
+     * @param age,, the customer age
+     */
     public CustomerPOJO(String email, String first_name, String last_name, String gender, Integer age) {
         this.email = email;
         this.first_name = first_name;
@@ -15,43 +23,20 @@ public class CustomerPOJO {
         this.age = age;
     }
 
+    /**
+     *
+     * @return the customer id
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email the new customer id
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }

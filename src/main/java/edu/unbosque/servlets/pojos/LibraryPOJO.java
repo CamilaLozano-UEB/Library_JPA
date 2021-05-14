@@ -6,25 +6,25 @@ public class LibraryPOJO {
 
     private String name;
 
-    public LibraryPOJO() { }
-
+    /**
+     * @param libraryId, the library id
+     * @param name,      the library name
+     */
     public LibraryPOJO(Integer libraryId, String name) {
         this.libraryId = libraryId;
         this.name = name;
     }
 
-    public Integer getLibraryId() {
-        return libraryId;
-    }
-
-    public void setLibraryId(Integer libraryId) {
-        this.libraryId = libraryId;
-    }
-
+    /**
+     * @return the library name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name,the new library name
+     */
     public void setName(String name) {
         this.name = name;
     }
