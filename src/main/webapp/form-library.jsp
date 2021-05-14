@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
-<!--div containing the three forms to create, modify and delete an author-->
+<!--div containing the three forms to create, modify and delete an library-->
 <div id="create-menu">
     <h2>Crear Biblioteca</h2>
     <form action="./create-library">
