@@ -1,9 +1,7 @@
 package edu.unbosque.servlets.Edition;
 
 import com.google.gson.Gson;
-import edu.unbosque.services.BookService;
 import edu.unbosque.services.EditionService;
-import edu.unbosque.servlets.pojos.BookPOJO;
 import edu.unbosque.servlets.pojos.EditionPOJO;
 
 import javax.servlet.*;
@@ -15,6 +13,15 @@ import java.util.List;
 
 @WebServlet(name = "ListEditionsServlet", value = "/list-edition")
 public class ListEditionsServlet extends HttpServlet {
+    /**
+     * Manages the list operation on the service, get a list of EditionPOJO and print the information to the .jsp on JSON
+     * format
+     *
+     * @param request  the request of the client
+     * @param response the response to the client
+     * @throws IOException      input and output exception
+     * @throws ServletException a servlet Exception
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");

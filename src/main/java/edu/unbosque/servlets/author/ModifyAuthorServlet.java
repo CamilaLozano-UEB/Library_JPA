@@ -31,7 +31,7 @@ public class ModifyAuthorServlet extends HttpServlet {
             // get the modify message of the method modifyAuthor
             message = authorService.modifyAuthor(authorId, name, country);
         } catch (NumberFormatException e) {
-            message = "El id ingresado es incorrecto";
+            message = "El id ingresado es incorrecto!";
         }
         // Create an attribute with the message
         request.setAttribute("modifyAuthorMessage", message);

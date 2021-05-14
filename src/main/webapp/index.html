@@ -21,7 +21,9 @@
 </div>
 
 <script>
+    // Get all the buttons on the body
     const buttons = document.getElementsByClassName("button");
+    // Add mouse enter and mouse leave events to change the style
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener("mouseenter", function () {
             buttons[i].style.backgroundColor = "#FFFFFF80";

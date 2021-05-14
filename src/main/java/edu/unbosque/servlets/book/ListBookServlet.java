@@ -13,6 +13,15 @@ import java.util.List;
 
 @WebServlet(name = "ListBookServlet", value = "/list-books")
 public class ListBookServlet extends HttpServlet {
+    /**
+     * Manages the list operation on the service, get a list of BookPOJO and print the information to the .jsp on JSON
+     * format
+     *
+     * @param request  the request of the client
+     * @param response the response to the client
+     * @throws IOException      input and output exception
+     * @throws ServletException a servlet Exception
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");

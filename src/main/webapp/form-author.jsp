@@ -20,6 +20,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Crear autor!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("createAuthorMessage")%>
         </p>
     </form>
@@ -41,6 +42,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Modificar!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("modifyAuthorMessage")%>
         </p>
     </form>
@@ -53,6 +55,7 @@
         </label>
         <br>
         <input type="submit" class="formButton" value="Eliminar autor!">
+        <!--Obtain the message attribute from the servlet-->
         <p style="display: inline"><%=request.getAttribute("deleteAuthorMessage")%>
         </p>
     </form>
@@ -72,15 +75,22 @@
     </table>
 </div>
 <script>
-
+    /**
+     * Modify the table adding the information that receives from the servlet on JSON format
+     * @param elementId the id of the table
+     * @param servlet the servlet
+     * @param columns the columns of the table
+     */
     function printTable(elementId, servlet, columns) {
 
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
+            // if the operation is complete
             if (xhr.readyState === 4) {
+                // Parse the response text
                 const data = JSON.parse(xhr.responseText);
                 const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
-
+                // Create rows and columns with the information of the servlet
                 data.map(d => {
                     const newRow = tbodyRef.insertRow();
 
@@ -96,8 +106,10 @@
         xhr.send(null);
     }
 
+    // Invoke the method
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country']);
 
+    // Remove all null messages from the servlet response on p tags
     const ps = document.getElementsByTagName("p");
     for (let i = 0; i < ps.length; i++)
         if (ps[i].textContent.trim() === "null")

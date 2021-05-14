@@ -12,6 +12,14 @@ import java.io.IOException;
 @WebServlet(name = "createAuthorServlet", value = "/create-author")
 public class CreateAuthorServlet extends HttpServlet {
 
+    /**
+     * Manages the create operation on the service
+     *
+     * @param request  the request of the client
+     * @param response the response to the client
+     * @throws IOException      input and output exception
+     * @throws ServletException a servlet Exception
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -21,9 +29,11 @@ public class CreateAuthorServlet extends HttpServlet {
 
         AuthorService authorService = new AuthorService();
 
+        // get the delete message of the method deleteAuthor
         String message = authorService.saveAuthor(name, country);
+        // Create an attribute with the message
         request.setAttribute("createAuthorMessage", message);
-
+        // redirect to the form-author.jsp
         request.getRequestDispatcher("/form-author.jsp").forward(request, response);
     }
 
