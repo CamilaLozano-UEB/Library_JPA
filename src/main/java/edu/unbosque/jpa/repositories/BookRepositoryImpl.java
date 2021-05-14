@@ -16,22 +16,34 @@ public class BookRepositoryImpl implements BookRepository {
         this.entityManager = entityManager;
     }
 
+    /**
+     * Find a Book by id
+     *
+     * @param id the book id to be searched book
+     */
+    @Override
     public Optional<Book> findById(Integer id) {
         Book book = entityManager.find(Book.class, id);
         return book != null ? Optional.of(book) : Optional.empty();
     }
 
-    /*public Optional<Book> findByNameNamedQuery(String title) {
-        Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class)
-                .setParameter("title", title)
-                .getSingleResult();
-        return book != null ? Optional.of(book) : Optional.empty();
-    }*/
-
+    /**
+     * Finds all the books of the DB
+     *
+     * @return a list of books
+     */
+    @Override
     public List<Book> findAll() {
         return entityManager.createQuery("from Book").getResultList();
     }
 
+    /**
+     * Saves a new book to the DB
+     *
+     * @param book the book to be saved
+     * @return a message of the result
+     */
+    @Override
     public Optional<Book> save(Book book) {
         try {
             entityManager.getTransaction().begin();
@@ -44,6 +56,16 @@ public class BookRepositoryImpl implements BookRepository {
         return Optional.empty();
     }
 
+    /**
+     * Modify the attributes of an specific book
+     *
+     * @param bookId     the id of the book to be modified
+     * @param authorId   the new author id
+     * @param title      the new title
+     * @param isbnNumber the new ISBN number
+     * @param genre      the new genre
+     * @return a message of the result
+     */
     @Override
     public String modify(Integer bookId, Integer authorId, String title, String isbnNumber, String genre) {
         entityManager.getTransaction().begin();
@@ -53,7 +75,7 @@ public class BookRepositoryImpl implements BookRepository {
         Author author = (Author) entityManager.createQuery("SELECT a FROM Author a WHERE a.id = :id").
                 setParameter("id", authorId).getSingleResult();
 
-        if (author == null) return "El id del libro no existe!";
+        if (author == null) return "El id del autor no existe!";
 
         book.get().setAuthor(author);
         book.get().setTitle(title);
@@ -65,6 +87,11 @@ public class BookRepositoryImpl implements BookRepository {
         return "Se ha modificado exitosamente!";
     }
 
+    /**
+     * Delete a Book from th DB
+     *
+     * @param bookId the id of the book to be deleted
+     */
     @Override
     public void delete(Integer bookId) {
         entityManager.getTransaction().begin();

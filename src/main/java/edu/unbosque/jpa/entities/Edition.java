@@ -3,14 +3,23 @@ package edu.unbosque.jpa.entities;
 import javax.persistence.*;
 import java.util.*;
 
+/**
+ * Annotations to configure the entity, give a name and define the named queries
+ */
 @Entity
 @Table(name = "Edition") // Optional
 @NamedQueries({
         @NamedQuery(name = "Edition.findAll",
                 query = "SELECT b FROM Edition b")
 })
+/**
+ * Edition Entity
+ */
 public class Edition {
 
+    /**
+     * Define the attributes for the Edition entity, the Id and the relations
+     */
     @Id
     @GeneratedValue
     @Column(name = "edition_id")
@@ -38,65 +47,110 @@ public class Edition {
     public Edition() {
     }
 
+    /**
+     * @param book        the Edition book (FK)
+     * @param description the Edition description
+     * @param releaseYear the releaseYear of the Edition
+     */
     public Edition(Book book, String description, Date releaseYear) {
         this.book = book;
         this.description = description;
         this.releaseYear = releaseYear;
     }
 
-    public Edition(String description, Date releaseYear) {
-        this.description = description;
-        this.releaseYear = releaseYear;
-    }
-
+    /**
+     * @return the EditionId
+     */
     public Integer getEditionId() {
         return editionId;
     }
 
+    /**
+     * @param editionId the new EditionId
+     */
     public void setEditionId(Integer editionId) {
         this.editionId = editionId;
     }
 
+    /**
+     * @return the Edition description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @param description the new description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * @return the Edtiion Id
+     */
     public Date getReleaseYear() {
         return releaseYear;
     }
 
+    /**
+     * @param releaseYear the new release year
+     */
     public void setReleaseYear(Date releaseYear) {
         this.releaseYear = releaseYear;
     }
 
+    /**
+     * @return the book of the Edition
+     */
     public Book getBook() {
         return book;
     }
 
+    /**
+     * @param book the new book of the edition
+     */
     public void setBook(Book book) {
         this.book = book;
     }
 
+    /**
+     * @return the libraries associated with this Edition
+     */
     public Set<Library> getLibraries() {
         return libraries;
     }
 
+    /**
+     * add a new Library associated wih this Edition
+     *
+     * @param library the new Library
+     */
     public void addLibrary(Library library) {
         libraries.add(library);
     }
 
+    /**
+     * removes a Library associated with this Edition
+     *
+     * @param library the Library to be removed
+     */
     public void removeLibrary(Library library) {
         libraries.remove(library);
     }
 
+    /**
+     * @return a List of the rents of this Edition
+     */
     public List<Rent> getRents() {
         return rents;
     }
 
+    /**
+     * Add´s a new rent to the rents Set
+     *
+     * @param rent a new rent
+     */
     public void addRent(Rent rent) {
         rents.add(rent);
         rent.setEdition(this);

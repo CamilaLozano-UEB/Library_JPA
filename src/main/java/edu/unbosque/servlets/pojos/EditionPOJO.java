@@ -10,6 +10,13 @@ public class EditionPOJO {
     private Integer bookId;
     private String bookTitle;
 
+    /**
+     * @param editionId   the edition id
+     * @param description the edition description
+     * @param releaseYear the edition release year
+     * @param bookId      the edition book id
+     * @param bookTitle   the edition book title
+     */
     public EditionPOJO(Integer editionId, String description, Date releaseYear, Integer bookId, String bookTitle) {
         this.editionId = editionId;
         this.description = description;
@@ -18,43 +25,45 @@ public class EditionPOJO {
         this.bookTitle = bookTitle;
     }
 
+    /**
+     * @return the edition id
+     */
     public Integer getEditionId() {
         return editionId;
     }
 
+    /**
+     * @param editionId the new edition id
+     */
     public void setEditionId(Integer editionId) {
         this.editionId = editionId;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    /**
+     * @return the edition release year
+     */
     public Date getReleaseYear() {
         return releaseYear;
     }
 
+    /**
+     * @param releaseYear new edition release year
+     */
     public void setReleaseYear(Date releaseYear) {
         this.releaseYear = releaseYear;
     }
 
+    /**
+     * @return the edition book id
+     */
     public Integer getBookId() {
         return bookId;
     }
 
+    /**
+     * @param bookId the new edition book id
+     */
     public void setBookId(Integer bookId) {
         this.bookId = bookId;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
     }
 }

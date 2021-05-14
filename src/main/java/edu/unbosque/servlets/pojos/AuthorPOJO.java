@@ -10,6 +10,12 @@ public class AuthorPOJO {
 
     private String country;
 
+    /**
+     * @param authorId the author id
+     * @param name     the author name
+     * @param numBooks the num of books of the author
+     * @param country  the author country
+     */
     public AuthorPOJO(Integer authorId, String name, Integer numBooks, String country) {
         this.authorId = authorId;
         this.name = name;
@@ -17,35 +23,31 @@ public class AuthorPOJO {
         this.country = country;
     }
 
+    /**
+     * @return the author id
+     */
     public Integer getAuthorId() {
         return authorId;
     }
 
+    /**
+     * @param authorId the new author id
+     */
     public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
     }
 
+    /**
+     * @return the author name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name the new author name
+     */
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getNumBooks() {
-        return numBooks;
-    }
-
-    public void setNumBooks(Integer numBooks) {
-        this.numBooks = numBooks;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }
