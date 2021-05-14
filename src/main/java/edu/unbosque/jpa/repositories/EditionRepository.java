@@ -13,7 +13,7 @@ public interface EditionRepository {
      * Find an edition by id
      *
      * @param id the edition id
-     * @return
+     * @return an optional of Edition
      */
     Optional<Edition> findById(Integer id);
 
