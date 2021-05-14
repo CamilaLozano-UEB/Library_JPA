@@ -43,14 +43,14 @@ public class CustomerService {
         return customerPOJOS;
     }
 
-    public String saveCustomer(String email, String firstName, String lastName, String gender, Integer age) {
+    public String saveCustomer(String email, String first_name, String last_name, String gender, Integer age) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         customerRepository = new CustomerRepositoryImpl(entityManager);
 
-        Customer customer = new Customer(email, firstName, lastName, gender, age);
+        Customer customer = new Customer(email, first_name, last_name, gender, age);
         String message = customerRepository.save(customer);
 
         entityManager.close();
@@ -76,11 +76,11 @@ public class CustomerService {
 
     }
 
-    public String modifyCustomer(String email, String firstName, String lastName, String gender, Integer age) {
+    public String modifyCustomer(String email, String first_name, String last_name, String gender, Integer age) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);
-        String message = customerRepository.modify(email, firstName, lastName, gender, age);
+        String message = customerRepository.modify(email, first_name, last_name, gender, age);
         entityManager.close();
         entityManagerFactory.close();
         return message;

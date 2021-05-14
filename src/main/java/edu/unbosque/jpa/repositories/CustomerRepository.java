@@ -12,7 +12,7 @@ public interface CustomerRepository {
 
     String save(Customer costumer);
 
-    String modify(String email,String firstName, String lastName, String gender, Integer age);
+    String modify(String email,String first_name, String last_name, String gender, Integer age);
 
     void delete(String email);
 

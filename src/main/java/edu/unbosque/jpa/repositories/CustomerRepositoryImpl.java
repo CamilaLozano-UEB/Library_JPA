@@ -38,16 +38,20 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public String modify(String email, String firstName, String lastName, String gender, Integer age) {
+    public String modify(String email, String first_name, String last_name, String gender, Integer age) {
         entityManager.getTransaction().begin();
         Optional<Customer> customer = this.findByEmail(email);
         if (!customer.isPresent()) return "No existe un cliente con el email ingresado!";
-        customer.get().setFirst_name(firstName);
-        customer.get().setLast_name(lastName);
+        customer.get().setFirst_name(first_name);
+        customer.get().setLast_name(last_name);
         customer.get().setGender(gender);
-        customer.get().setAge(age);
+       customer.get().setAge(age);
         entityManager.getTransaction().commit();
         return "Se ha modificado exitosamente!";
+
+
+
+
     }
 
     @Override

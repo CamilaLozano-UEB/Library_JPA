@@ -94,6 +94,10 @@ public class Customer {
         this.age = age;
     }
 
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
+    }
+
     public List<Rent> getRents() {
         return rents;
     }

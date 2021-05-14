@@ -20,13 +20,21 @@ public class CreateCustomerServlet extends HttpServlet {
         String first_name = request.getParameter("first_name");
         String last_name = request.getParameter("last_name");
         String gender = request.getParameter("gender");
-        Integer age = Integer.parseInt(request.getParameter("age"));
+        String stringAge = request.getParameter("age");
+        int age;
+        try {
+            age = Integer.parseInt(stringAge);
+            CustomerService customerService = new CustomerService();
+            if (!customerService.findCustomer(email)) {
+                String message = customerService.saveCustomer(email, first_name, last_name, gender, age);
+                request.setAttribute("createCustomerMessage", message);
+            } else {
+                request.setAttribute("createCustomerMessage", "Ya existe un cliente con el mismo Email");
 
-        CustomerService customerService = new CustomerService();
-        String message = customerService.saveCustomer(email, first_name, last_name, gender,age);
-        request.setAttribute("createCustomerMessage", message);
+            }
+        } catch (NumberFormatException e) {
+            request.setAttribute("createCustomerMessage", "Error en la edad, porfavor ingrese un numero valido");
+        }
         request.getRequestDispatcher("/form-customer.jsp").forward(request, response);
-
     }
-
 }
