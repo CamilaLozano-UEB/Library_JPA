@@ -42,7 +42,7 @@
         <br>
         <label>Rango de fecha 2</label>
         <label>
-            <input type="date" class="textItem" name="date1" required>
+            <input type="date" class="textItem" name="date2" required>
         </label>
         <br>
         <input type="submit" class="formButton" value="Find rents!">

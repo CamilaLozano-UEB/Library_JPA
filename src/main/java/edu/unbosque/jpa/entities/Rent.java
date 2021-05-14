@@ -1,6 +1,7 @@
 package edu.unbosque.jpa.entities;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Rent") // Optional
@@ -23,7 +24,7 @@ public class Rent {
     private Customer customer;
 
     @Column(name = "renting_date")
-    private String renting_date;
+    private Date renting_date;
 
     @ManyToOne
     @JoinColumn(name = "edition_id")
@@ -31,14 +32,10 @@ public class Rent {
 
     public Rent() {}
 
-    public Rent(String renting_date) {
+    public Rent(Date renting_date) {
         this.renting_date = renting_date;
     }
 
-    public Rent(Integer rentId, String renting_date) {
-        this.rentId = rentId;
-        this.renting_date = renting_date;
-    }
 
     public Integer getRentId() {
         return rentId;
@@ -48,11 +45,11 @@ public class Rent {
         this.rentId = rentId;
     }
 
-    public String getRenting_date() {
+    public Date getRenting_date() {
         return renting_date;
     }
 
-    public void setRenting_date(String renting_date) {
+    public void setRenting_date(Date renting_date) {
         this.renting_date = renting_date;
     }
 
