@@ -27,25 +27,25 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     }
 
     @Override
-    public Optional<Library> save(Library library) {
+    public String save(Library library) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(library);
             entityManager.getTransaction().commit();
-            return Optional.of(library);
+            return "Se ha registrado exitosamente!";
         } catch (Exception e) {
-            e.printStackTrace();
+            return "Ha ocurrido un error al registrar la biblioteca!";
         }
-        return Optional.empty();
     }
 
     @Override
-    public void modify(Integer libraryId, String name) {
+    public String modify(Integer libraryId, String name) {
         entityManager.getTransaction().begin();
         Library library = this.findById(libraryId).get();
-        if (library == null) return;
+        if (library == null) return "No existe la libreria con el id ingresado!";
         library.setName(name);
         entityManager.getTransaction().commit();
+        return "Se ha modificado exitosamente!";
     }
 
     @Override

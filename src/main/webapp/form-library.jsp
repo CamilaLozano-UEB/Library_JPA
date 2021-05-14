@@ -9,38 +9,89 @@
 <div id="create-menu">
     <h2>Crear Biblioteca</h2>
     <form action="./create-library">
-        <label>Library name: </label>
+        <label>Nombre: </label>
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Create library!">
+        <input type="submit" class="formButton" value="Crear biblioteca!">
+        <p style="display: inline"><%=request.getAttribute("createLibraryMessage")%>
+
     </form>
 
     <h2>Modificar Biblioteca</h2>
     <form action="./modify-library">
-        <label>Library id: </label>
+        <label>Id: </label>
         <label>
             <input type="text" class="textItem" name="libraryId" required>
         </label>
         <br>
-        <label> Library name: </label>
+        <label> Nombre: </label>
         <label>
             <input type="text" class="textItem" name="name" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Modify library!">
+        <input type="submit" class="formButton" value="Modificar biblioteca!">
+        <p style="display: inline"><%=request.getAttribute("modifyLibraryMessage")%>
+
     </form>
 
     <h2>Eliminar Biblioteca</h2>
     <form action="./delete-library">
-        <label> Library id: </label>
+        <label> Id: </label>
         <label>
             <input type="text" class="textItem" name="libraryId" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Delete library!">
+        <input type="submit" class="formButton" value="Borrar biblioteca!">
+        <p style="display: inline"><%=request.getAttribute("deleteLibraryMessage")%>
+
     </form>
 </div>
+
+<div>
+    <table class="table" id="libraryTbl">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre de la biblioteca</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+
+    function printTable(elementId, servlet, columns) {
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                const data = JSON.parse(xhr.responseText);
+                const tbodyRef = document.getElementById(elementId).getElementsByTagName('tbody')[0];
+
+                data.map(d => {
+                    const newRow = tbodyRef.insertRow();
+
+                    columns.map(c => {
+                        const cell = newRow.insertCell();
+                        const text = document.createTextNode(d[c]);
+                        cell.appendChild(text);
+                    });
+                });
+            }
+        }
+        xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
+        xhr.send(null);
+    }
+
+    printTable(elementId = 'libraryTbl', servlet = 'list-libraries', columns = ['libraryId', 'name']);
+
+    const ps = document.getElementsByTagName("p");
+    for (let i = 0; i < ps.length; i++)
+        if (ps[i].textContent.trim() === "null")
+            ps[i].textContent = "";
+</script>
 </body>
 </html>

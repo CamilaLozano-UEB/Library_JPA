@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteLibraryServlet", value = "/DeleteLibraryServlet")
+@WebServlet(name = "DeleteLibraryServlet", value = "/delete-library")
 public class DeleteLibraryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,8 +17,8 @@ public class DeleteLibraryServlet extends HttpServlet {
 
         Integer libraryId = Integer.parseInt(request.getParameter("libraryId"));
         LibraryService libraryService = new LibraryService();
-        libraryService.deleteLibrary(libraryId);
-
-        response.sendRedirect("./form-library.jsp");
+        String message = libraryService.deleteLibrary(libraryId);
+        request.setAttribute("deleteLibraryMessage", message);
+        request.getRequestDispatcher("/form-library.jsp").forward(request, response);
     }
 }

@@ -41,7 +41,7 @@ public class LibraryService {
 
     }
 
-    public void saveLibrary(String name) {
+    public String saveLibrary(String name) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -49,31 +49,35 @@ public class LibraryService {
         libraryRepository = new LibraryRepositoryImpl(entityManager);
 
         Library library = new Library(name);
-        Library persistedLibrary = libraryRepository.save(library).get();
+        String message = libraryRepository.save(library);
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return;
+        return message;
 
     }
 
-    public void modifyLibrary(Integer libraryId, String name) {
+    public String modifyLibrary(Integer libraryId, String name) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         libraryRepository = new LibraryRepositoryImpl(entityManager);
-        libraryRepository.modify(libraryId, name);
+        String message = libraryRepository.modify(libraryId, name);
         entityManager.close();
         entityManagerFactory.close();
+        return message;
     }
 
-    public void deleteLibrary(Integer libraryId){
+    public String deleteLibrary(Integer libraryId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         libraryRepository = new LibraryRepositoryImpl(entityManager);
         libraryRepository.delete(libraryId);
         entityManager.close();
         entityManagerFactory.close();
+        return "Se ha eliminado la biblioteca exitosamente!";
+
+
     }
 
 }

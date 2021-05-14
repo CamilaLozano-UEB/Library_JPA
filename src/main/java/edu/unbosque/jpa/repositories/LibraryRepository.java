@@ -12,9 +12,9 @@ public interface LibraryRepository {
 
     Optional<Library> findById(Integer libraryId);
 
-    Optional<Library> save(Library library);
+    String save(Library library);
 
-    void modify(Integer libraryId, String name);
+    String modify(Integer libraryId, String name);
 
     void delete(Integer libraryId);
 

@@ -9,22 +9,22 @@
 <div>
     <h2>Crear Renta</h2>
     <form action="./create-rent">
-        <label>email: </label>
+        <label>Correo: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
-        <label> Edition id:</label>
+        <label> Id de la edición:</label>
         <label>
             <input type="text" class="textItem" name="editionId" required>
         </label>
         <br>
-        <label>Renting Date</label>
+        <label>Fecha de Renta</label>
         <label>
             <input type="date" class="textItem" name="releaseYear" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Create Rent!">
+        <input type="submit" class="formButton" value="Crear Renta!">
     </form>
 
     <h2>Filtrar por rango de fechas</h2>
@@ -52,9 +52,9 @@
     <table class="table" id="rentsTbl">
         <thead>
         <tr>
-            <th>Rent Id</th>
-            <th>Email</th>
-            <th>Books</th>
+            <th>Id de la renta</th>
+            <th>Correo </th>
+            <th>Libros</th>
         </tr>
         </thead>
         <tbody>
