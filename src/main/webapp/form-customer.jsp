@@ -9,83 +9,89 @@
 <div id="create-menu">
     <h2>Crear Cliente</h2>
     <form action="./create-customer">
-        <label> Customer email </label>
+        <label> Email del cliente: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
-        <label>Customer first name: </label>
+        <label>Nombre del cliente: </label>
         <label>
             <input type="text" class="textItem" name="first_name" required>
         </label>
         <br>
-        <label>Customer last name: </label>
+        <label>Apellido del cliente: </label>
         <label>
             <input type="text" class="textItem" name="last_name" required>
         </label>
         <br>
-        <label>Customer age: </label>
+        <label>Edad del cliente: </label>
         <label>
             <input type="text" class="textItem" name="age" required>
         </label>
         <br>
-        <label>Customer gender: </label>
+        <label>Genero del cliente:</label>
         <label>
             <input type="text" class="textItem" name="gender" required>
         </label>
         <br>
         <input type="submit" class="formButton" value="Create customer!">
+        <p style="display: inline"><%=request.getAttribute("createCustomerMessage")%>
+        </p>
     </form>
     <br>
     <h2>Modificar Cliente</h2>
     <form action="./modify-customer">
-        <label>Customer email: </label>
+        <label>Email del cliente: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
-        <label>Customer first name: </label>
+        <label>Nombre del cliente: </label>
         <label>
             <input type="text" class="textItem" name="first_name" required>
         </label>
         <br>
-        <label>Customer last name: </label>
+        <label>Apellido del cliente: </label>
         <label>
             <input type="text" class="textItem" name="last_name" required>
         </label>
         <br>
-        <label>Customer age: </label>
+        <label>Edad del cliente: </label>
         <label>
             <input type="text" class="textItem" name="age" required>
         </label>
         <br>
-        <label>Customer gender: </label>
+        <label>Genero del cliente: </label>
         <label>
             <input type="text" class="textItem" name="gender" required>
         </label>
         <br>
         <input type="submit" class="formButton" value="Modify customer!">
+        <p style="display: inline"><%=request.getAttribute("modifyCustomerMessage")%>
+        </p>
     </form>
 
     <h2>Eliminar Cliente</h2>
     <form action="./delete-customer">
-        <label>Customer email: </label>
+        <label>Email del cliente: </label>
         <label>
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
         <input type="submit" class="formButton" value="Delete customer!">
+        <p style="display: inline"><%=request.getAttribute("deleteCustomerMessage")%>
+        </p>
     </form>
 </div>
 <div>
     <table class="table" id="customerTbl">
         <thead>
         <tr>
-            <th>email</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Gender</th>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Genero</th>
         </tr>
         </thead>
         <tbody>
@@ -119,7 +125,10 @@
 
     // Printing customers
     printTable(elementId = 'customerTbl', servlet = 'list-customer', columns = ['email', 'first_name', 'last_name', 'age','gender']);
-
+    const ps = document.getElementsByTagName("p");
+    for (let i = 0; i < ps.length; i++)
+        if (ps[i].textContent.trim() === "null")
+            ps[i].textContent = "";
 </script>
 </body>
 </html>

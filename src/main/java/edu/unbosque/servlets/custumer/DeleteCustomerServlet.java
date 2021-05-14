@@ -13,13 +13,20 @@ import java.io.IOException;
 public class DeleteCustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
         String email = request.getParameter("email");
 
         CustomerService customerService = new CustomerService();
         if (customerService.findCustomer(email)){
             customerService.deleteCustomer(email);
+            request.setAttribute("deleteCustomerMessage", " ");
+        }else{
+            request.setAttribute("deleteCustomerMessage", "No existe un cliente con ese Email");
+
         }
-        response.sendRedirect("./form-customer.jsp");
+
+        request.getRequestDispatcher("/form-customer.jsp").forward(request, response);
     }
 }
