@@ -20,7 +20,6 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     public List<CustomerPOJO> listCustomer() {
-
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -37,28 +36,30 @@ public class CustomerService {
                     customer.getFirst_name(),
                     customer.getLast_name(),
                     customer.getGender(),
-                    Integer.parseInt(customer.getAge())
+                    customer.getAge()
             ));
         }
 
         return customerPOJOS;
     }
 
-    public Customer saveCustomer(String email,String firstName, String lastName, String gender, Integer age) {
+    public String saveCustomer(String email, String firstName, String lastName, String gender, Integer age) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         customerRepository = new CustomerRepositoryImpl(entityManager);
 
-        Customer customer = new Customer(email,firstName,lastName,  gender, age.toString());
-        Customer persistedCustomer = customerRepository.save(customer).get();
+        Customer customer = new Customer(email, firstName, lastName, gender, age);
+        String message = customerRepository.save(customer);
 
         entityManager.close();
+        entityManagerFactory.close();
 
-        return persistedCustomer;
+        return message;
 
     }
+
     public boolean findCustomer(String email) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
@@ -66,28 +67,35 @@ public class CustomerService {
 
         customerRepository = new CustomerRepositoryImpl(entityManager);
 
-        if(customerRepository.findByEmail(email).equals(Optional.empty())){
+        if (customerRepository.findByEmail(email).equals(Optional.empty())) {
             entityManager.close();
             return false;
-        }else{
+        } else {
             return true;
         }
 
     }
 
-    public void modifyCustomer(String email, String firstName, String lastName, String gender, Integer age) {
+    public String modifyCustomer(String email, String firstName, String lastName, String gender, Integer age) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);
-        customerRepository.modify(email,firstName, lastName, gender, age);
+        String message = customerRepository.modify(email, firstName, lastName, gender, age);
         entityManager.close();
+        entityManagerFactory.close();
+        return message;
     }
 
-    public void deleteCustomer(String email) {
+    public String deleteCustomer(String email) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);
+        Optional<Customer> customer = customerRepository.findByEmail(email);
+        if (!customer.isPresent()) return "No existe un cliente con el email ingresado!";
         customerRepository.delete(email);
         entityManager.close();
+        entityManagerFactory.close();
+        return "Se ha eliminado el cliente exitosamente!";
+
     }
 }

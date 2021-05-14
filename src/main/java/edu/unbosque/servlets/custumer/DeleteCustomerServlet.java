@@ -17,16 +17,9 @@ public class DeleteCustomerServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         String email = request.getParameter("email");
-
         CustomerService customerService = new CustomerService();
-        if (customerService.findCustomer(email)){
-            customerService.deleteCustomer(email);
-            request.setAttribute("deleteCustomerMessage", " ");
-        }else{
-            request.setAttribute("deleteCustomerMessage", "No existe un cliente con ese Email");
-
-        }
-
+        String message = customerService.deleteCustomer(email);
+        request.setAttribute("deleteCustomerMessage",message);
         request.getRequestDispatcher("/form-customer.jsp").forward(request, response);
     }
 }

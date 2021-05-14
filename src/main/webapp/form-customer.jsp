@@ -34,7 +34,7 @@
             <input type="text" class="textItem" name="gender" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Create customer!">
+        <input type="submit" class="formButton" value="Crear Cliente!">
         <p style="display: inline"><%=request.getAttribute("createCustomerMessage")%>
         </p>
     </form>
@@ -66,7 +66,7 @@
             <input type="text" class="textItem" name="gender" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Modify customer!">
+        <input type="submit" class="formButton" value="Modificar cliente!">
         <p style="display: inline"><%=request.getAttribute("modifyCustomerMessage")%>
         </p>
     </form>
@@ -78,7 +78,7 @@
             <input type="text" class="textItem" name="email" required>
         </label>
         <br>
-        <input type="submit" class="formButton" value="Delete customer!">
+        <input type="submit" class="formButton" value="Borrar Cliente!">
         <p style="display: inline"><%=request.getAttribute("deleteCustomerMessage")%>
         </p>
     </form>

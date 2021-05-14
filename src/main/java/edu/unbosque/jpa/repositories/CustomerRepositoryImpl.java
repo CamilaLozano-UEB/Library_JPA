@@ -8,6 +8,7 @@ import java.util.Optional;
 
 
 public class CustomerRepositoryImpl implements CustomerRepository {
+
     private EntityManager entityManager;
 
     public CustomerRepositoryImpl(EntityManager entityManager) {
@@ -18,21 +19,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         Customer customer = entityManager.find(Customer.class, email);
         return customer != null ? Optional.of(customer) : Optional.empty();
     }
-    @Override
-    public Optional<Customer> findByFirst_name(String first_name) {
-        Customer customer = entityManager.createQuery("SELECT u FROM Customer u WHERE u.first_name = :first_name", Customer.class)
-                .setParameter("first_name", first_name)
-                .getSingleResult();
-        return customer != null ? Optional.of(customer) : Optional.empty();
-    }
-
-    @Override
-    public Optional<Customer> findByLast_name(String last_name) {
-        Customer customer = entityManager.createQuery("SELECT u FROM Customer u WHERE u.last_name = :last_name", Customer.class)
-                .setParameter("last_name", last_name)
-                .getSingleResult();
-        return customer != null ? Optional.of(customer) : Optional.empty();
-    }
 
     @Override
     public List<Customer> findAll() {
@@ -40,28 +26,28 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public Optional<Customer> save(Customer customer) {
+    public String save(Customer customer) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(customer);
             entityManager.getTransaction().commit();
-            return Optional.of(customer);
+            return "Se ha registrado exitosamente!";
         } catch (Exception e) {
-            e.printStackTrace();
+            return "Ha ocurrido un error al registrar al cliente!";
         }
-        return Optional.empty();
     }
 
     @Override
-    public void modify(String email, String firstName, String lastName, String gender, Integer age) {
+    public String modify(String email, String firstName, String lastName, String gender, Integer age) {
         entityManager.getTransaction().begin();
-        Customer customer = this.findByEmail(email).get();
-        if (customer == null) return;
-        customer.setFirst_name(firstName);
-        customer.setLast_name(lastName);
-        customer.setGender(gender);
-        customer.setAge(age.toString());
+        Optional<Customer> customer = this.findByEmail(email);
+        if (!customer.isPresent()) return "No existe un cliente con el email ingresado!";
+        customer.get().setFirst_name(firstName);
+        customer.get().setLast_name(lastName);
+        customer.get().setGender(gender);
+        customer.get().setAge(age);
         entityManager.getTransaction().commit();
+        return "Se ha modificado exitosamente!";
     }
 
     @Override
