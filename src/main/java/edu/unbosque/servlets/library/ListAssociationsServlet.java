@@ -1,10 +1,8 @@
 package edu.unbosque.servlets.library;
 
 import com.google.gson.Gson;
-import edu.unbosque.jpa.repositories.LibraryRepositoryImpl;
 import edu.unbosque.services.LibraryService;
 import edu.unbosque.servlets.pojos.AssociationPOJO;
-import edu.unbosque.servlets.pojos.LibraryPOJO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

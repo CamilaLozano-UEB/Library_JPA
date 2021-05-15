@@ -1,8 +1,6 @@
 package edu.unbosque.jpa.repositories;
 
-import edu.unbosque.jpa.entities.Book;
-import edu.unbosque.jpa.entities.Edition;
-import edu.unbosque.jpa.entities.Library;
+import edu.unbosque.jpa.entities.*;
 
 import javax.persistence.EntityManager;
 import java.util.Date;
@@ -12,7 +10,11 @@ import java.util.Optional;
 public class EditionRepositoryImpl implements EditionRepository {
 
     private EntityManager entityManager;
-
+    /**
+     * Constructor class with entity manager
+     *
+     * @param entityManager, entity manager of Edition
+     */
     public EditionRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -101,6 +103,7 @@ public class EditionRepositoryImpl implements EditionRepository {
      */
     @Override
     public String delete(Integer id) {
+
         entityManager.getTransaction().begin();
 
         Optional<Edition> edition = this.findById(id);
@@ -111,6 +114,8 @@ public class EditionRepositoryImpl implements EditionRepository {
         for (Library library : edition.get().getLibraries())
             library.removeEdition(edition.get());
         edition.get().getBook().removeEdition(edition.get());
+
+
         entityManager.remove(edition.get());
         entityManager.getTransaction().commit();
 

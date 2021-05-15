@@ -1,9 +1,8 @@
 package edu.unbosque.services;
 
-
 import edu.unbosque.jpa.entities.Customer;
-import edu.unbosque.jpa.repositories.CustomerRepository;
-import edu.unbosque.jpa.repositories.CustomerRepositoryImpl;
+import edu.unbosque.jpa.entities.Rent;
+import edu.unbosque.jpa.repositories.*;
 import edu.unbosque.servlets.pojos.CustomerPOJO;
 
 import javax.ejb.Stateless;
@@ -124,10 +123,25 @@ public class CustomerService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customerRepository = new CustomerRepositoryImpl(entityManager);
+        RentRepositoryImpl rentRepository = new RentRepositoryImpl(entityManager);
+        EditionRepositoryImpl editionRepository = new EditionRepositoryImpl(entityManager);
         //find an optional object customer with the id email
         Optional<Customer> customer = customerRepository.findByEmail(email);
         //if the customer with the email exists, the customer will deleted
         if (!customer.isPresent()) return "No existe un cliente con el email ingresado!";
+
+        List<Rent> rents= rentRepository.findByEmail(email);
+
+
+        customer.get().getRents().clear();
+
+        for (Rent rent : rents) {
+            editionRepository.findById(rent.getEdition().getEditionId()).get().removeRents(rent);
+            customer.get().removeRent(rent);
+            rentRepository.delete(rent);
+
+        }
+
         customerRepository.delete(email);
         entityManager.close();
         entityManagerFactory.close();

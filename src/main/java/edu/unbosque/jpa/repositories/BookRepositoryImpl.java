@@ -12,6 +12,11 @@ public class BookRepositoryImpl implements BookRepository {
 
     private EntityManager entityManager;
 
+    /**
+     * Constructor class with entity manager
+     *
+     * @param entityManager, entity manager of book
+     */
     public BookRepositoryImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

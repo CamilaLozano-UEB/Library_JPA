@@ -29,45 +29,69 @@ public class Rent {
     @ManyToOne
     @JoinColumn(name = "edition_id")
     private Edition edition;
-
+    /**
+     * constructor for the rent class
+     */
     public Rent() {}
 
+    /**
+     * Constructor for the rent class without edition,customer and principal key rent
+     *
+     * @param renting_date, Date of the rent
+     */
     public Rent(Date renting_date) {
         this.renting_date = renting_date;
     }
 
-
+    /**
+     * Getter for rentId
+     *
+     * @return the id rent
+     */
     public Integer getRentId() {
         return rentId;
     }
 
-    public void setRentId(Integer rentId) {
-        this.rentId = rentId;
-    }
-
+    /**
+     * Getter for reting_date
+     *
+     * @return the date of the rent
+     */
     public Date getRenting_date() {
         return renting_date;
     }
 
-    public void setRenting_date(Date renting_date) {
-        this.renting_date = renting_date;
-    }
-
+    /**
+     * Getter for edition
+     *
+     * @return the edition of the rent
+     */
     public Edition getEdition() {
         return edition;
     }
-
+    /**
+     * Setter for edition
+     *
+     * @param edition, the edition of the rent
+     */
     public void setEdition(Edition edition) {
         this.edition = edition;
     }
-
+    /**
+     * Getter for customer
+     *
+     * @return the customer of the rent
+     */
     public Customer getCustomer() {
         return customer;
     }
-
+    /**
+     * Setter for customer
+     *
+     * @param customer, the customer of the rent
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
 }

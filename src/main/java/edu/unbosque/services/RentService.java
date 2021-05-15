@@ -21,6 +21,14 @@ public class RentService {
     RentRepository rentRepository;
     EditionRepository editionRepository;
 
+    /**
+     *Manages the save method of the repository with an {@link EntityManager}
+     *
+     * @param email, the email of the costumer
+     * @param edition_id,  the id of the edition
+     * @param renting_date, the date of the rent
+     * @return a result message
+     */
     public String saveRent(String email, Integer edition_id, Date renting_date) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
@@ -32,8 +40,10 @@ public class RentService {
 
         Rent rent = new Rent(renting_date);
         Optional<Customer> customer = costumerRepository.findByEmail(email);
+        //Verify that there is a customer searched for by that email
         if (!customer.isPresent()) return "El id del cliente ingresado no existe!";
         Optional<Edition> edition = editionRepository.findById(edition_id);
+        //Verify that there is a edition searched for by the id
         if (!edition.isPresent())
             return "El id del editicion ingresado no existe!";
         customer.ifPresent(a -> {
@@ -50,6 +60,13 @@ public class RentService {
 
     }
 
+    /**
+     * Manages the list rents between two specific dates and a customer method with an {@link EntityManager}
+     *
+     * @param renting_date1,renting_date2 the dates from search the rents
+     * @param email, the email of the costumer
+     * @return a RentPOJO list with the specific rents
+     */
     public List<RentPOJO> listRents(Date renting_date1, Date renting_date2, String email) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -77,4 +94,5 @@ public class RentService {
         }
         return rentPOJOList;
     }
+
 }

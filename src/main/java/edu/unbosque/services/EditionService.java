@@ -2,10 +2,8 @@ package edu.unbosque.services;
 
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
-import edu.unbosque.jpa.repositories.BookRepository;
-import edu.unbosque.jpa.repositories.BookRepositoryImpl;
-import edu.unbosque.jpa.repositories.EditionRepository;
-import edu.unbosque.jpa.repositories.EditionRepositoryImpl;
+import edu.unbosque.jpa.entities.Rent;
+import edu.unbosque.jpa.repositories.*;
 import edu.unbosque.servlets.pojos.EditionPOJO;
 
 import javax.persistence.EntityManager;
@@ -114,7 +112,19 @@ public class EditionService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         editionRepository = new EditionRepositoryImpl(entityManager);
+        RentRepositoryImpl rentRepository = new RentRepositoryImpl(entityManager);
+        CustomerRepositoryImpl customerRepository = new CustomerRepositoryImpl(entityManager);
+        Optional<Edition> edition = editionRepository.findById(editionId);
         // delete and get the result message of the delete method
+        List<Rent> rents= rentRepository.findByEdition(editionId);
+
+        edition.get().getRents().clear();
+
+        for (Rent rent : rents) {
+            customerRepository.findByEmail(rent.getCustomer().getEmail()).get().removeRent(rent);
+            edition.get().removeRents(rent);
+            rentRepository.delete(rent);
+        }
         String message = editionRepository.delete(editionId);
         entityManager.close();
         entityManagerFactory.close();

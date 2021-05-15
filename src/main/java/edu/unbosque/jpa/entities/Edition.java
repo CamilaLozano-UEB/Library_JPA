@@ -155,5 +155,13 @@ public class Edition {
         rents.add(rent);
         rent.setEdition(this);
     }
+    /**
+     * Removes a determinate Rent from the Edition rents List
+     *
+     * @param rent the rent to remove
+     */
+    public void removeRents( Rent rent){
+        rents.remove(rent);
+    }
 
 }

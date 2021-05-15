@@ -78,6 +78,14 @@ public class Customer {
         this.age = age;
     }
 
+    public List<Rent> getRents() {
+        return rents;
+    }
+
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
+    }
+
     /**
      * Getter for email
      *
@@ -177,5 +185,13 @@ public class Customer {
         rents.add(rent);
         rent.setCustomer(this);
     }
+    /**
+     * Removes a determinate Rent from the Customer rents List
+     *
+     * @param rent the rent to remove
+     */
+    public void removeRent(Rent rent) {
+        rents.remove(rent);
 
+    }
 }

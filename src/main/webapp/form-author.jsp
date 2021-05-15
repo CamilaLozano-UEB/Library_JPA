@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Author Forms</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
+<!--Button that allows you to return to index.html-->
+<a href="index.html" class="btn btn-info btn-lg" style="background-color: #273c75">
+    <span class="glyphicon glyphicon-home"></span> Home
+</a>
 <!--div containing the three forms to create, modify and delete an author-->
 <div id="create-menu">
     <h2>Crear Autor</h2>

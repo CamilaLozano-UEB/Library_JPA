@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Library Forms</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
+<!--Button that allows you to return to index.html-->
+<a href="index.html" class="btn btn-info btn-lg"style="background-color: #273c75">
+    <span class="glyphicon glyphicon-home"></span> Home
+</a>
 <!--div containing the three forms to create, modify and delete an library-->
 <div id="create-menu">
     <h2>Crear Biblioteca</h2>
@@ -80,6 +85,7 @@
 
 <div style="float:left; width:45%; margin-right: 10%">
     <!-- Create a table that shows the objects that were saved from the form-->
+    <h2>Librerias</h2>
     <table class="table" id="libraryTbl">
         <thead>
         <tr>
@@ -92,6 +98,7 @@
     </table>
 </div>
 <div style="float:left; width: 45%;">
+    <h2>Asociaciones</h2>
     <table class="table" id="libraryAssociation">
         <thead>
         <tr>
