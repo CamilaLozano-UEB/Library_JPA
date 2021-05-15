@@ -1,6 +1,7 @@
 package edu.unbosque.jpa.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Annotations to configure the entity, give a name and define the named queries
@@ -42,6 +43,9 @@ public class Book {
 
     @Column(name = "genre")
     private String genre;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Edition> editions;
 
     /**
      * @param title the book title
@@ -126,6 +130,20 @@ public class Book {
      */
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    /**
+     * @return the editions of the book
+     */
+    public List<Edition> getEditions() {
+        return editions;
+    }
+
+    /**
+     * @param editions all the editions
+     */
+    public void setEditions(List<Edition> editions) {
+        this.editions = editions;
     }
 
 }
