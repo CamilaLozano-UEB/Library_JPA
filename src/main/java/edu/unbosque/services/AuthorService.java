@@ -110,7 +110,7 @@ public class AuthorService {
         // Verify if are any edition on the optional
         if (!author.isPresent()) return "No existe el autor con el id ingresado!";
 
-        List<Book> books = author.get().getBooks();
+        List<Book> books = bookRepository.findAuthorBooks(author.get());
 
         // Remove all the books on the author book list
         author.get().getBooks().clear();

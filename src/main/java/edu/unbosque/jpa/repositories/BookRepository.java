@@ -1,11 +1,20 @@
 package edu.unbosque.jpa.repositories;
 
+import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.entities.Book;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository {
+
+    /**
+     * Finds the books of an specific Author
+     *
+     * @param author the author
+     * @return a list of books
+     */
+    List<Book> findAuthorBooks(Author author);
 
     /**
      * Find a Book by id

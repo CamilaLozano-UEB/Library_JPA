@@ -17,6 +17,18 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     /**
+     * Finds the books of an specific Author
+     *
+     * @param author the author
+     * @return a list of books
+     */
+    @Override
+    public List<Book> findAuthorBooks(Author author) {
+        return entityManager.createQuery("SELECT  b FROM Book b WHERE b.author = :author")
+                .setParameter("author", author).getResultList();
+    }
+
+    /**
      * Find a Book by id
      *
      * @param id the book id to be searched book
