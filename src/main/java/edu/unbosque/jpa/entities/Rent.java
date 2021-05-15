@@ -7,8 +7,8 @@ import java.util.Date;
 @Table(name = "Rent") // Optional
 @NamedQueries({
         @NamedQuery(name = "Rent.findByRenting_date",
-                query = "SELECT r FROM Rent r WHERE r.renting_date = :renting_date"),
-        //select * from rent where renting_date between '2017/05/07' and '2017/05/08' (range of days)
+                query = "SELECT r FROM Rent r WHERE r.renting_date  BETWEEN : renting_date  AND : renting_date "),
+
         @NamedQuery(name = "Rent.findAll",
                 query = "SELECT r FROM Rent r")
 })

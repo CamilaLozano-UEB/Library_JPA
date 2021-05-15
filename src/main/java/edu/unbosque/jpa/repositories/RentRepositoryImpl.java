@@ -3,6 +3,7 @@ package edu.unbosque.jpa.repositories;
 import edu.unbosque.jpa.entities.Rent;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +23,10 @@ public class RentRepositoryImpl implements RentRepository {
 
     @Override
     public List<Rent> findByRenting_date(Date renting_date1, Date renting_date2 ) {
-        List<Rent> rent = entityManager.createQuery("SELECT r FROM Rent r WHERE r.renting_date  BETWEEN "+ renting_date1 +"AND"+ renting_date2 ).getResultList();
+        Query rentQ = entityManager.createQuery("SELECT r FROM Rent r WHERE r.renting_date  BETWEEN : renting_date1   AND : renting_date2 ");
+        rentQ.setParameter("renting_date1",renting_date1);
+        rentQ.setParameter("renting_date2",renting_date2);
+        List<Rent> rent =rentQ.getResultList();
         return rent ;
     }
 

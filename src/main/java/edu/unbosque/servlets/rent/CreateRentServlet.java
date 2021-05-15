@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@WebServlet(name = "createBookServlet", value = "/create-book")
+@WebServlet(name = "createRentServlet", value = "create-rent")
 public class CreateRentServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -35,7 +35,7 @@ public class CreateRentServlet extends HttpServlet {
         }catch(NumberFormatException |ParseException e){
             message="Es necesario que el id de edicion sea numerica";
         }
-        request.setAttribute("createEditionMessage", message);
+        request.setAttribute("createRentMessage", message);
 
 
         request.getRequestDispatcher("/form-rent.jsp").forward(request, response);
