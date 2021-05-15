@@ -110,7 +110,7 @@ public class EditionRepositoryImpl implements EditionRepository {
         // Remove the associations with the libraries
         for (Library library : edition.get().getLibraries())
             library.removeEdition(edition.get());
-
+        edition.get().getBook().removeEdition(edition.get());
         entityManager.remove(edition.get());
         entityManager.getTransaction().commit();
 

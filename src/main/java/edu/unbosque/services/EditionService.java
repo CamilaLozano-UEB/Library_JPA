@@ -67,9 +67,11 @@ public class EditionService {
         // Verify if are any book on the optional
         if (!book.isPresent()) return "El id del libro ingresado no existe!";
 
-        Edition edition = new Edition(book.get(), description, releaseYear);
-        editionRepository.save(edition);
-
+        book.ifPresent(a -> {
+            Edition edition = new Edition(book.get(), description, releaseYear);
+            editionRepository.save(edition);
+            bookRepository.save(a);
+        });
         entityManager.close();
         entityManagerFactory.close();
         return "Se ha registrado correctamente la edición!";
@@ -96,7 +98,6 @@ public class EditionService {
 
         // Modify and get the result message of the method modify
         String message = editionRepository.modify(editionId, book.get(), description, releaseYear);
-
         entityManager.close();
         entityManagerFactory.close();
 
@@ -112,11 +113,9 @@ public class EditionService {
     public String deleteEdition(Integer editionId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-
         editionRepository = new EditionRepositoryImpl(entityManager);
         // delete and get the result message of the delete method
         String message = editionRepository.delete(editionId);
-
         entityManager.close();
         entityManagerFactory.close();
 

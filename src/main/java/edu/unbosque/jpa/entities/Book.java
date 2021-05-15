@@ -146,4 +146,8 @@ public class Book {
         this.editions = editions;
     }
 
+    public void removeEdition(Edition edition){
+        this.editions.remove(edition);
+    }
+
 }
