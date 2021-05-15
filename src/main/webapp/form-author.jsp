@@ -109,7 +109,7 @@
     }
 
     // Invoke the method
-    printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks', 'country']);
+    printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'books', 'country']);
 
     // Remove all null messages from the servlet response on p tags
     const ps = document.getElementsByTagName("p");

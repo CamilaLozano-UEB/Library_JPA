@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "listAuthorsServlet", value = "/list-customer")
+@WebServlet(name = "listCustomersServlet", value = "/list-customer")
 public class ListCustomersServlet extends HttpServlet {
     /**
      * Manages the list operation on the service, get a list of CustomerPOJO and print the information to the .jsp on JSON

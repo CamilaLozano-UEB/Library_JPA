@@ -6,7 +6,7 @@ public class AuthorPOJO {
 
     private String name;
 
-    private Integer numBooks;
+    private Integer books;
 
     private String country;
 
@@ -19,7 +19,7 @@ public class AuthorPOJO {
     public AuthorPOJO(Integer authorId, String name, Integer numBooks, String country) {
         this.authorId = authorId;
         this.name = name;
-        this.numBooks = numBooks;
+        this.books = numBooks;
         this.country = country;
     }
 
