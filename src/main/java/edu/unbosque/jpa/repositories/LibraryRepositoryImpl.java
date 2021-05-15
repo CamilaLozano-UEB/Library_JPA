@@ -127,6 +127,4 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         library.removeEdition(edition);
         entityManager.getTransaction().commit();
     }
-
-
 }

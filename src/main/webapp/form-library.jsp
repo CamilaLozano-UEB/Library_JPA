@@ -78,7 +78,7 @@
     </form>
 </div>
 
-<div>
+<div style="float:left; width:45%; margin-right: 10%">
     <!-- Create a table that shows the objects that were saved from the form-->
     <table class="table" id="libraryTbl">
         <thead>
@@ -89,6 +89,17 @@
         </thead>
         <tbody>
         </tbody>
+    </table>
+</div>
+<div style="float:left; width: 45%;">
+    <table class="table" id="libraryAssociation">
+        <thead>
+        <tr>
+            <th>Id de la edición</th>
+            <th>Id de la librería</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
     </table>
 </div>
 <script>
@@ -123,9 +134,11 @@
         xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
         xhr.send(null);
     }
+
     // Invoke the method
 
     printTable(elementId = 'libraryTbl', servlet = 'list-libraries', columns = ['libraryId', 'name']);
+    printTable(elementId = 'libraryAssociation', servlet = 'listAssociationsServlet', columns = ['editionId', 'libraryId']);
     // Remove all null messages from the servlet response on p tags
     const ps = document.getElementsByTagName("p");
     for (let i = 0; i < ps.length; i++)

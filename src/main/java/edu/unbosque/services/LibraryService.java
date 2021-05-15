@@ -7,6 +7,7 @@ import edu.unbosque.jpa.repositories.EditionRepository;
 import edu.unbosque.jpa.repositories.EditionRepositoryImpl;
 import edu.unbosque.jpa.repositories.LibraryRepository;
 import edu.unbosque.jpa.repositories.LibraryRepositoryImpl;
+import edu.unbosque.servlets.pojos.AssociationPOJO;
 import edu.unbosque.servlets.pojos.LibraryPOJO;
 
 import javax.ejb.Stateless;
@@ -153,6 +154,21 @@ public class LibraryService {
         if (!edition.isPresent()) return "No existe una edición con ese id";
         libraryRepository.disassociateEdition(edition.get(), library.get());
         return "Se ha desasociado exitosamente";
+    }
+
+    public List<AssociationPOJO> listAssociations() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+
+        List<Library> libraries = libraryRepository.findAll();
+        List<AssociationPOJO> associations = new ArrayList<>();
+
+        for (Library library : libraries)
+            for (Edition edition : library.getEditions())
+                associations.add(new AssociationPOJO(library.getLibraryId(), edition.getEditionId()));
+
+        return associations;
     }
 
 }
