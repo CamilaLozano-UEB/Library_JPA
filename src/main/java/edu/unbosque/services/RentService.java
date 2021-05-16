@@ -94,7 +94,6 @@ public class RentService {
         }
         return rentPOJOList;
     }
-
     /**
      * Manages the list of all rents with an {@link EntityManager}
      *
