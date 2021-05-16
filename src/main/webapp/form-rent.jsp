@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="CSS/Styles.css">
 </head>
 <body>
-<!--Button that allows you to return to index.html-->
-<a href="index.html" class="btn btn-info btn-lg" style="background-color: #273c75">
-    <span class="glyphicon glyphicon-home"></span> Home
-</a>
 <!--div containing the three forms to create and filter table-->
-<div>
+
+<div  style="float:left; width:45%; margin-right: 10%">
+    <!--Button that allows you to return to index.html-->
+    <a href="index.html" class="btn btn-info btn-lg" style="background-color: #273c75">
+        <span class="glyphicon glyphicon-home"></span> Home
+    </a>
     <h2>Crear Renta</h2>
     <form action="./create-rent">
         <label>Correo: </label>
@@ -57,8 +58,25 @@
         <input type="submit" class="formButton" value="Mostrar rentas!" id="buttonF">
     </form>
 </div>
-<div>
+<div style="float:left; width: 45%;">
     <!-- Create a table that shows the objects that filter in the second form-->
+    <h2>Rentas buscadas por fechas</h2>
+    <table class="table" id="rentsFilter">
+        <thead>
+        <tr>
+            <th>Id de la renta</th>
+            <th>Dia de renta</th>
+            <th>Correo</th>
+            <th>Id de edicion</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<br>
+<div>
+    <!-- Create a table that shows the objects of all rents-->
     <table class="table" id="rentsTbl">
         <thead>
         <tr>
@@ -81,7 +99,7 @@
 
 
         const data = <%=request.getAttribute("rentsJsonString")%>;
-        const tbodyRef = document.getElementById('rentsTbl').getElementsByTagName('tbody')[0];
+        const tbodyRef = document.getElementById('rentsFilter').getElementsByTagName('tbody')[0];
 
         data.map(d => {
             const newRow = tbodyRef.insertRow();
@@ -96,14 +114,44 @@
     }
 
     /**
-     * Method that controls when the table is triggered to filter and display
+     * Modify the table from the ListAllRentsServlets servlet attribute
+     */
+    function printTable2(servlet) {
+        columns = ['rentId', 'renting_date', 'customer', 'edition'];
+
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            // if the operation is complete
+            if (xhr.readyState === 4) {
+                // Parse the response text
+                const data = JSON.parse(xhr.responseText);
+                const tbodyRef = document.getElementById("rentsTbl").getElementsByTagName('tbody')[0];
+                // Create rows and columns with the information of the servlet
+
+                data.map(d => {
+                    const newRow = tbodyRef.insertRow();
+
+                    columns.map(c => {
+                        const cell = newRow.insertCell();
+                        const text = document.createTextNode(d[c]);
+                        cell.appendChild(text);
+                    });
+                });
+            }
+        }
+        xhr.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
+        xhr.send(null);
+    }
+
+    /**
+     * Method that controls when the tables is triggered to filter and display
      */
     function doTable() {
         const data = <%=request.getAttribute("rentsJsonString")%>;
         if (data != null) {
             printTable();
         }
-
+        printTable2("find-rentList")
     }
     // Invoke the method
     doTable();
