@@ -22,10 +22,10 @@ public class RentService {
     EditionRepository editionRepository;
 
     /**
-     * Manages the save method of the repository with an {@link EntityManager}
+     *Manages the save method of the repository with an {@link EntityManager}
      *
-     * @param email,        the email of the costumer
-     * @param edition_id,   the id of the edition
+     * @param email, the email of the costumer
+     * @param edition_id,  the id of the edition
      * @param renting_date, the date of the rent
      * @return a result message
      */
@@ -45,7 +45,7 @@ public class RentService {
         Optional<Edition> edition = editionRepository.findById(edition_id);
         //Verify that there is a edition searched for by the id
         if (!edition.isPresent())
-            return "El id del edicion ingresado no existe!";
+            return "El id del edición ingresado no existe!";
         customer.ifPresent(a -> {
             a.addRent(rent);
             costumerRepository.save(a);
@@ -64,7 +64,7 @@ public class RentService {
      * Manages the list rents between two specific dates and a customer method with an {@link EntityManager}
      *
      * @param renting_date1,renting_date2 the dates from search the rents
-     * @param email,                      the email of the costumer
+     * @param email, the email of the costumer
      * @return a RentPOJO list with the specific rents
      */
     public List<RentPOJO> listRents(Date renting_date1, Date renting_date2, String email) {
