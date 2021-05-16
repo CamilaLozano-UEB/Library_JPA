@@ -49,7 +49,7 @@ public class EditionRepositoryImpl implements EditionRepository {
      */
     @Override
     public List<Edition> findByBookId(Integer id) {
-        return entityManager.createQuery("FROM Edition e WHERE e.id= :id").setParameter("id", id)
+        return entityManager.createQuery("FROM Edition e WHERE e.book.id= :id").setParameter("id", id)
                 .getResultList();
     }
 

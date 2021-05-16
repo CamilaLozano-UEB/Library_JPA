@@ -3,6 +3,7 @@ package edu.unbosque.services;
 import edu.unbosque.jpa.entities.Author;
 import edu.unbosque.jpa.entities.Book;
 import edu.unbosque.jpa.entities.Edition;
+import edu.unbosque.jpa.entities.Rent;
 import edu.unbosque.jpa.repositories.*;
 import edu.unbosque.servlets.pojos.AuthorPOJO;
 
@@ -104,7 +105,8 @@ public class AuthorService {
         authorRepository = new AuthorRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
         editionRepository = new EditionRepositoryImpl(entityManager);
-
+        RentRepositoryImpl rentRepository = new RentRepositoryImpl(entityManager);
+        CustomerRepositoryImpl customerRepository = new CustomerRepositoryImpl(entityManager);
         Optional<Author> author = authorRepository.findById(id);
 
         // Verify if are any edition on the optional
@@ -116,9 +118,20 @@ public class AuthorService {
         author.get().getBooks().clear();
         // Delete all books of the DB and the editions
         for (Book book : books) {
-            for (Edition edition : editionRepository.findByBookId(book.getBookId()))
+            book.getEditions().clear();
+            for (Edition edition : editionRepository.findByBookId(book.getBookId())) {
+                List<Rent> rents = rentRepository.findByEdition(edition.getEditionId());
+                edition.getRents().clear();
+
+                for (Rent rent : rents) {
+                    customerRepository.findByEmail(rent.getCustomer().getEmail()).get().removeRent(rent);
+                    edition.removeRents(rent);
+                    rentRepository.delete(rent);
+
+                }
                 // Delete all the editions off the book
                 editionRepository.delete(edition.getEditionId());
+            }
             // Delete the book
             bookRepository.delete(book.getBookId());
         }
